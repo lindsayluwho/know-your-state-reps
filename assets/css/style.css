@@ -1,3 +1,8 @@
+
+#map {
+	width: 50%;
+	height: 200px;
+
 footer {
 	position: fixed;
 	bottom: 0;
@@ -6,4 +11,5 @@ footer {
 
 #info-box {
 	margin-bottom: 80px;
+
 }
