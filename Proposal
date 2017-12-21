@@ -1,0 +1,21 @@
+Project Title: Know Your State Reps
+
+Team Members:
+Dave Brudner
+Lindsay Brown
+Nathan Coder
+Vadim Gelman
+
+Project Description: Users enter their home address and our project returns their state representatives (assembleymen and senator) as well as those represetatives' voting records. The purpose is to increase voter awareness of their state representatives. Tools like this exist at the federal level in spades but there is nothing like this for state governments and the majority of voters don't even know the names of their state reps, let alone how they actually represent them in state legislatures. 
+
+
+Sketch of Final Product: see balsamiq mock
+
+APIs to be Used:
+Open States API
+Google Civic Information API
+Google Maps API
+
+
+Rough Breakdown of Tasks: see functional spec
+
