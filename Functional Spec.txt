@@ -1,0 +1,19 @@
+Functional Spec:
+
+-Page does automatic geolocation if user allows location services
+
+-Displays geolocation on map
+
+-Address bar in map searches for geolocation specified, displays location on map
+
+-Cards are populated by API query using geolocation to determine representatives, displays name, position, and district
+
+-When card is clicked, rep info boxes below are populated from legislator API call:
+	-Name
+	-Headshot
+	-Position
+	-Any committees, subcommittees, or leadership positions
+	-Office contact info
+	-Voting record
+			-Voting record may need to be loaded separately, will need to be pulled from the Bills search query, which then pulls a bills details query and searches for rep's name in the voter roll to determine a yes, no, or other vote
+			-if an individual bill is clicked on, the information of the bill displays in another tile below the voting record
