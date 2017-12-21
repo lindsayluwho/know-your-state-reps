@@ -1,6 +1,6 @@
-var coordinates = 0;
-var latitude = 0;
-var longitude = 0;
+var coordinates = null;
+var latitude = null;
+var longitude = null;
 
 function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
@@ -13,14 +13,14 @@ function initMap() {
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
             var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
+              lat: latitude,
+              lng: longitude
             };
 
              var marker = new google.maps.Marker({
-					position: pos,
-					map: map
-					});
+          position: pos,
+          map: map
+          });
 
             
             map.setCenter(pos);
@@ -35,21 +35,21 @@ function initMap() {
 
 // Function if the request for a user's geolocation is successful
 function success(response) {
-		var coordinates = response.coords;
-		var latitude = coordinates.latitude;
-		var longitude = coordinates.longitude;
-		console.log(typeof latitude);
-		var url = "https://openstates.org/api/v1/legislators/geo/?lat=" + latitude + "&long=" + longitude + "&apikey=8cef81cb-a1a4-48d3-86ff-0520d28f6ca6"
+    coordinates = response.coords;
+    latitude = coordinates.latitude;
+    longitude = coordinates.longitude;
+    var url = "https://openstates.org/api/v1/legislators/geo/?lat=" + latitude + "&long=" + longitude + "&apikey=8cef81cb-a1a4-48d3-86ff-0520d28f6ca6"
 
 
 
-		$.getJSON(url, function(data){
-				console.log(data)
-				$("#names").append(data[0].full_name)
-		});
+    $.getJSON(url, function(data){
+        console.log(data)
+        $("#names").append(data[0].full_name)
+    });
 
-	console.log(url);
+  console.log(url);
 };
 
 // Actual function call for geolocation.
 navigator.geolocation.getCurrentPosition(success);
+
