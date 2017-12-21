@@ -1,7 +1,6 @@
-
-#map {
-	width: 50%;
-	height: 200px;
+nav {
+	margin-bottom: 80px;
+}
 
 footer {
 	position: fixed;
@@ -11,5 +10,11 @@ footer {
 
 #info-box {
 	margin-bottom: 80px;
+}
 
+#map {
+	margin: 0 auto;
+	height: 300px;
+	width: 600px;
+	margin-bottom: 60px;
 }
