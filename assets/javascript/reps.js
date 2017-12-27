@@ -32,11 +32,6 @@ function searchRep() {
             method: "GET"
         })
         .done(function(data) {
-            //	  var results = data.response;
-            //console.log(results);
-            //console.log(data);
-
-
 
             for (var i = 0; i < data.length; i++) {
 
@@ -86,13 +81,12 @@ $(".card-title").click(function() {
     var queryURL = "https://openstates.org/api/v1/legislators/" + legislatorID + "/?&apikey=8cef81cb-a1a4-48d3-86ff-0520d28f6ca6"
     console.log(legislatorID);
     console.log(queryURL);
+    
     // Creating an AJAX call for the specific card being clicked
     $.ajax({
         url: queryURL,
         method: "GET"
     }).done(function(response) {
-        //      	console.log(response.length)
-        // for (var i = 0; i < response.length; i++) {
 
         console.log("printing card");
 
@@ -119,17 +113,34 @@ $(".card-title").click(function() {
         var offices = response.offices;
         var phone = $("<p class='card-content white-text'>").text("Phone: " + offices[0].phone);
         var address = $("<p class='card-content white-text'>").text("Office Address: "+ offices[0].address);
+        var committees = response.roles;
+				var committeesResults = [];
+
+
+
+        function getCommittees(){
+        	for (i = 0; i < committees.length; i++)
+        	{
+        		if (committees[i].type === "committee member")
+        		{
+        			committeesResults.push(committees[i].committee);
+        		}
+
+        	}
+        }
+
+        getCommittees();
+        var committeesDiv = $("<p class='card-content white-text'>").text("Committees: " + committeesResults.toString());
+
+        console.log(committees);
+        console.log(committeesResults);
+
         // append all the sections
-
-
-        // $(".section").append(myDIV);
 
 
         $(".section").append(infoBox);
         $("#info-box").append(infoCol);
         $("#info-col").append(idCard);
-
-
 
         infoCol.append(idCard);
         idCard.append(cardBlue);
@@ -142,19 +153,10 @@ $(".card-title").click(function() {
         nameClicked.append(address);
         nameClicked.append(phone);
         nameClicked.append(email);
+        nameClicked.append(committeesDiv);
 
         infoBox.append(infoCol);
 
-        // $("#info-box").append(infoCol)
-
-
-
-        // append to the main
-
-
-        console.log(response);
-
-        // }
     });
 
 
