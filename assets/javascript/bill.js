@@ -1,11 +1,11 @@
 $(document).ready(function() {
 
-  // This function takes a name "Dave Brudner" and returns it in last name, comma, first name form ("Brudner, Dave")
-  // Works with middle names too. Doesn't work with full names with more than 3 names
+  
   var getBills = (representative, isSenator) => {
 
 
-
+      // This function takes a name "Dave Brudner" and returns it in last name, comma, first name form ("Brudner, Dave")
+      // Works with middle names too. Doesn't work with full names with more than 3 names
       var lastNameCommaFirstName = (name) => {
   
         var name = name.split(" ")
