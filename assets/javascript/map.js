@@ -43,11 +43,11 @@ function success(response) {
 
 
     $.getJSON(url, function(data){
-        console.log(data)
+        // console.log(data)
         $("#names").append(data[0].full_name)
     });
 
-  console.log(url);
+  // console.log(url);
 };
 
 // Actual function call for geolocation.

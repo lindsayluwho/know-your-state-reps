@@ -19,7 +19,7 @@ function success(response) {
 
     searchRep(latitude, longitude)
 
-  console.log(url);
+  // console.log(url);
 };
 
 //test
@@ -30,7 +30,7 @@ function searchRep(latitude, longitude) {
 
     var queryURL = "https://openstates.org/api/v1/legislators/geo/?lat=" + latitude + "&long=" + longitude + "&apikey=8cef81cb-a1a4-48d3-86ff-0520d28f6ca6"
 
-    console.log("console log 1: " + queryURL);
+    // console.log("console log 1: " + queryURL);
 
     $.ajax({
             url: queryURL,
@@ -50,6 +50,8 @@ function searchRep(latitude, longitude) {
                     if (!senatorLoaded) {
                         $("#senator").html(data[i].full_name + "<br>" + "Office: State Senator" + "<br>" + "District: " + data[i].district + "<br>");
                         $("#senator").attr("data-id", data[i].leg_id);
+                        $("#senator").attr("name", data[i].full_name)
+                        $("#senator").attr("isSenator", "true")
                         senatorLoaded = true;
                         //console.log(data[i].full_name);
                     }
@@ -59,12 +61,16 @@ function searchRep(latitude, longitude) {
                     if (!assembly1Loaded) {
                         $("#assembly1").html(data[i].full_name + "<br>" + "Office: State Assembly" + "<br>" + "District: " + data[i].district + "<br>");
                         $("#assembly1").attr("data-id", data[i].leg_id);
+                        $("#assembly1").attr("name", data[i].full_name)
+                        $("#assembly1").attr("isSenator", "false")
                         assembly1Loaded = true;
                         //console.log(data[i].full_name);
                     } else {
                         if (!assembly2Loaded) {
                             $("#assembly2").html(data[i].full_name + "<br>" + "Office: State Assembly" + "<br>" + "District: " + data[i].district + "<br>");
                             $("#assembly2").attr("data-id", data[i].leg_id);
+                            $("#assembly2").attr("name", data[i].full_name)
+                            $("#assembly2").attr("isSenator", "false")
                             assembly2Loaded = true;
                             //console.log(data[i].full_name);
                         };
@@ -84,8 +90,8 @@ $(".card-title").click(function() {
 
     //build the query URL and append the leg ID to it
     var queryURL = "https://openstates.org/api/v1/legislators/" + legislatorID + "/?&apikey=8cef81cb-a1a4-48d3-86ff-0520d28f6ca6"
-    console.log(legislatorID);
-    console.log(queryURL);
+    // console.log(legislatorID);
+    // console.log(queryURL);
     
     // Creating an AJAX call for the specific card being clicked
     $.ajax({
@@ -93,8 +99,8 @@ $(".card-title").click(function() {
         method: "GET"
     }).done(function(response) {
 
-        console.log("printing card");
-        console.log($("info-box"));
+        // console.log("printing card");
+        // console.log($("info-box"));
 
         if ($("#info-box").length > 0)
         {
@@ -124,8 +130,8 @@ $(".card-title").click(function() {
         
 	        var committeesDiv = $("<p class='card-content white-text'>").text("Committees: " + committeesResults.toString());
 
-	        console.log(committees);
-	        console.log(committeesResults);
+	        // console.log(committees);
+	        // console.log(committeesResults);
 
 	        // append all the sections
 
@@ -181,8 +187,8 @@ $(".card-title").click(function() {
 	        
 	        var committeesDiv = $("<p class='card-content white-text'>").text("Committees: " + committeesResults.toString());
 
-	        console.log(committees);
-	        console.log(committeesResults);
+	        // console.log(committees);
+	        // console.log(committeesResults);
 
 	        // append all the sections
 

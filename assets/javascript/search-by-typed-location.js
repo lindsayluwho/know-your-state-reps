@@ -13,13 +13,9 @@ $(document).ready(function() {
 
         var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + location + "&key=AIzaSyANSUk1NNP2yDUSd94AklPQonusBBP16PI"
 
-        console.log(url);
-
         function searchRep(latitude, longitude) {
 
             var queryURL = "https://openstates.org/api/v1/legislators/geo/?lat=" + latitude + "&long=" + longitude + "&apikey=8cef81cb-a1a4-48d3-86ff-0520d28f6ca6"
-
-            console.log("console log 1: " + queryURL);
 
             $.ajax({
                     url: queryURL,
@@ -39,6 +35,8 @@ $(document).ready(function() {
                             if (!senatorLoaded) {
                                 $("#senator").html(data[i].full_name + "<br>" + "Office: State Senator" + "<br>" + "District: " + data[i].district + "<br>");
                                 $("#senator").attr("data-id", data[i].leg_id);
+                                $("#senator").attr("name", data[i].full_name)
+                                $("#senator").attr("isSenator", "true")
                                 senatorLoaded = true;
                                 //console.log(data[i].full_name);
                             }
@@ -48,12 +46,16 @@ $(document).ready(function() {
                             if (!assembly1Loaded) {
                                 $("#assembly1").html(data[i].full_name + "<br>" + "Office: State Assembly" + "<br>" + "District: " + data[i].district + "<br>");
                                 $("#assembly1").attr("data-id", data[i].leg_id);
+                                $("#assembly1").attr("name", data[i].full_name)
+                                $("#assembly1").attr("isSenator", "false")
                                 assembly1Loaded = true;
                                 //console.log(data[i].full_name);
                             } else {
                                 if (!assembly2Loaded) {
                                     $("#assembly2").html(data[i].full_name + "<br>" + "Office: State Assembly" + "<br>" + "District: " + data[i].district + "<br>");
                                     $("#assembly2").attr("data-id", data[i].leg_id);
+                                    $("#assembly2").attr("name", data[i].full_name)
+                                    $("#assembly2").attr("isSenator", "false")
                                     assembly2Loaded = true;
                                     //console.log(data[i].full_name);
                                 };
