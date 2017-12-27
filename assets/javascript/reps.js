@@ -16,90 +16,194 @@ searchRep()
 //test
 
 //$("#search").on("click", function() {
-function searchRep(){
-	//event.preventDefault();
-	// var searchTerm = ($("#search-term").val())
-	// var totalResults = ($("#total-results").val())
-	// var startDate = ($("#start-date").val())
-	// var endDate = ($("#end-date").val())
-
-	// startDate = startDate + '0101';
-	// endDate = endDate + '0101';
-
-	//searchTerm = "Linkin";
-
-	//startDate = "20010101";
-	//endDate = "20170101";
-
-	latitude = 40.960201;
-	longitude = -74.297324;
-	      
-
-	var queryURL = "https://openstates.org/api/v1/legislators/geo/?lat=" + latitude + "&long=" + longitude + "&apikey=8cef81cb-a1a4-48d3-86ff-0520d28f6ca6"
-
-	console.log(queryURL);
-
-	$.ajax({
-	  url: queryURL,
-	  method: "GET"
-	})
-	.done(function(data) {
-//	  var results = data.response;
-	  //console.log(results);
-	  console.log(data);
+function searchRep() {
 
 
-
-	  for (var i = 0; i < data.length; i++) {
-
-
-	  	var firstName = data[i].first_name;
-	  	var lastName = data[i].last_name;
-
-	  	//console.log(data[i].chamber);
-
-	  	if (data[i].chamber=="upper") {
-	  		if (!senatorLoaded) {
-	  		$("#senator").html(data[i].full_name + "<br>" + "Office: State Senator" + "<br>" + "District: " + data[i].district + "<br>"  );
-
-	  		senatorLoaded = true;
-	  		//console.log(data[i].full_name);
-	  		}
-	  	}
-
-	  	if (data[i].chamber=="lower") {
-	  		if (!assembly1Loaded) {
-	  		$("#assembly1").html(data[i].full_name + "<br>" + "Office: State Assembly" + "<br>" + "District: " + data[i].district + "<br>" );
-
-	  		assembly1Loaded = true;
-	  		//console.log(data[i].full_name);
-	  		} else{
-  				if (!assembly2Loaded) {
-  					$("#assembly2").html(data[i].full_name + "<br>" + "Office: State Assembly" + "<br>" + "District: " + data[i].district + "<br>" );
-
-  					assembly2Loaded = true;
-  					//console.log(data[i].full_name);
-  					};
-	  		}
-	  	}	  	
-
-		  // var article = $("<div>");
-
-		  // article.addClass("article");
-
-		  // var headline = $("<div class='headline'>"+searchDocs[i].headline.main+"</div>");
-
- 
-		  // article.append(headline);
-		  // $(".col-xs-10").append(article);
-
-		  //console.log(firstName);
-		  //console.log(lastName);
-	  }
+    latitude = 40.960201;
+    longitude = -74.297324;
 
 
-	});	
+    var queryURL = "https://openstates.org/api/v1/legislators/geo/?lat=" + latitude + "&long=" + longitude + "&apikey=8cef81cb-a1a4-48d3-86ff-0520d28f6ca6"
+
+    console.log("console log 1: " + queryURL);
+
+    $.ajax({
+            url: queryURL,
+            method: "GET"
+        })
+        .done(function(data) {
+
+            for (var i = 0; i < data.length; i++) {
 
 
+                var firstName = data[i].first_name;
+                var lastName = data[i].last_name;
+
+                //console.log(data[i].chamber);
+
+                if (data[i].chamber == "upper") {
+                    if (!senatorLoaded) {
+                        $("#senator").html(data[i].full_name + "<br>" + "Office: State Senator" + "<br>" + "District: " + data[i].district + "<br>");
+                        $("#senator").attr("data-id", data[i].leg_id);
+                        senatorLoaded = true;
+                        //console.log(data[i].full_name);
+                    }
+                }
+
+                if (data[i].chamber == "lower") {
+                    if (!assembly1Loaded) {
+                        $("#assembly1").html(data[i].full_name + "<br>" + "Office: State Assembly" + "<br>" + "District: " + data[i].district + "<br>");
+                        $("#assembly1").attr("data-id", data[i].leg_id);
+                        assembly1Loaded = true;
+                        //console.log(data[i].full_name);
+                    } else {
+                        if (!assembly2Loaded) {
+                            $("#assembly2").html(data[i].full_name + "<br>" + "Office: State Assembly" + "<br>" + "District: " + data[i].district + "<br>");
+                            $("#assembly2").attr("data-id", data[i].leg_id);
+                            assembly2Loaded = true;
+                            //console.log(data[i].full_name);
+                        };
+                    }
+                }
+
+            }
+
+
+        });
 
 }
+
+$(".card-title").click(function() {
+
+    var legislatorID = $(this).attr("data-id");
+
+    //build the query URL and append the leg ID to it
+    var queryURL = "https://openstates.org/api/v1/legislators/" + legislatorID + "/?&apikey=8cef81cb-a1a4-48d3-86ff-0520d28f6ca6"
+    console.log(legislatorID);
+    console.log(queryURL);
+    
+    // Creating an AJAX call for the specific card being clicked
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).done(function(response) {
+
+        console.log("printing card");
+        console.log($("info-box"));
+
+        if ($("#info-box").length > 0)
+        {
+        	var nameClicked = $("<div id='name-clicked' class='col s8'>");
+	        var photoCol = $("<div id='photo-column' class='col s4'>");
+        	var legName = $("<p class='card-content white-text'>").text("Name : " + response.full_name);
+        	var party = $("<p class='card-content white-text'>").text("Party: " + response.party);
+	        var email = $("<p class='card-content white-text'>").text("Email: " + response.email);
+	        
+	        var photoURL = response.photo_url;
+
+	        var photo = $("<img src='"+ photoURL + "' class='card-content'>");
+	        var offices = response.offices;
+	        var phone = $("<p class='card-content white-text'>").text("Phone: " + offices[0].phone);
+	        var address = $("<p class='card-content white-text'>").text("Office Address: "+ offices[0].address);
+	        var committees = response.roles;
+					var committeesResults = [];
+
+        	for (i = 0; i < committees.length; i++)
+        	{
+        		if (committees[i].type === "committee member")
+        		{
+        			committeesResults.push(committees[i].committee);
+        		}
+
+        	}
+        
+	        var committeesDiv = $("<p class='card-content white-text'>").text("Committees: " + committeesResults.toString());
+
+	        console.log(committees);
+	        console.log(committeesResults);
+
+	        // append all the sections
+
+	        $("#card-row").html(nameClicked);
+	        $("#card-row").append(photoCol)
+	        photoCol.append(photo);
+	        nameClicked.append(legName);
+	        nameClicked.append(party);
+	        nameClicked.append(address);
+	        nameClicked.append(phone);
+	        nameClicked.append(email);
+	        nameClicked.append(committeesDiv);
+
+        }
+
+        else
+        	{
+
+	        var infoBox = $("<div id='info-box' class='row'>");
+	        var infoCol = $("<div id='info-col' class='col s12'>");
+
+	        var idCard = $("<div id='id-card' class='card blue-grey darken-1'>");
+	        var cardBlue = $("<div class='card-content white-text'>");
+
+
+	        var cardRow = $("<div class='row' id='card-row'>");
+	        var nameClicked = $("<div id='name-clicked' class='col s8'>");
+	        var photoCol = $("<div id='photo-column' class='col s4'>");
+	        var titleRow = $("<div class='row'>");
+	        var titleSpan = $("<span id='name-clicked' class='card-title'>");
+
+	        var legName = $("<p class='card-content white-text'>").text("Name : " + response.full_name);
+	        var party = $("<p class='card-content white-text'>").text("Party: " + response.party);
+	        var email = $("<p class='card-content white-text'>").text("Email: " + response.email);
+	        
+	        var photoURL = response.photo_url;
+
+	        var photo = $("<img src='"+ photoURL + "' class='card-content'>");
+	        var offices = response.offices;
+	        var phone = $("<p class='card-content white-text'>").text("Phone: " + offices[0].phone);
+	        var address = $("<p class='card-content white-text'>").text("Office Address: "+ offices[0].address);
+	        var committees = response.roles;
+					var committeesResults = [];
+
+	        	for (i = 0; i < committees.length; i++)
+	        	{
+	        		if (committees[i].type === "committee member")
+	        		{
+	        			committeesResults.push(committees[i].committee);
+	        		}
+
+	        	}
+	        
+	        var committeesDiv = $("<p class='card-content white-text'>").text("Committees: " + committeesResults.toString());
+
+	        console.log(committees);
+	        console.log(committeesResults);
+
+	        // append all the sections
+
+
+	        $(".section").append(infoBox);
+	        $("#info-box").append(infoCol);
+	        $("#info-col").append(idCard);
+
+	        infoCol.append(idCard);
+	        idCard.append(cardBlue);
+	        cardBlue.append(cardRow);
+	        cardRow.append(nameClicked);
+	        cardRow.append(photoCol);
+	        photoCol.append(photo);
+	        nameClicked.append(legName);
+	        nameClicked.append(party);
+	        nameClicked.append(address);
+	        nameClicked.append(phone);
+	        nameClicked.append(email);
+	        nameClicked.append(committeesDiv);
+
+	        infoBox.append(infoCol);
+	      }
+        
+
+    });
+
+
+});
