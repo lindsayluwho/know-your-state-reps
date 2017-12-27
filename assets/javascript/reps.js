@@ -89,36 +89,25 @@ $(".card-title").click(function() {
     }).done(function(response) {
 
         console.log("printing card");
+        console.log($("info-box"));
 
-        var infoBox = $("<div id='info-box' class='row'>");
-        var infoCol = $("<div id='info-col' class='col s12'>");
+        if ($("#info-box").length > 0)
+        {
+        	var nameClicked = $("<div id='name-clicked' class='col s8'>");
+	        var photoCol = $("<div id='photo-column' class='col s4'>");
+        	var legName = $("<p class='card-content white-text'>").text("Name : " + response.full_name);
+        	var party = $("<p class='card-content white-text'>").text("Party: " + response.party);
+	        var email = $("<p class='card-content white-text'>").text("Email: " + response.email);
+	        
+	        var photoURL = response.photo_url;
 
-        var idCard = $("<div id='id-card' class='card blue-grey darken-1'>");
-        var cardBlue = $("<div class='card-content white-text'>");
+	        var photo = $("<img src='"+ photoURL + "' class='card-content'>");
+	        var offices = response.offices;
+	        var phone = $("<p class='card-content white-text'>").text("Phone: " + offices[0].phone);
+	        var address = $("<p class='card-content white-text'>").text("Office Address: "+ offices[0].address);
+	        var committees = response.roles;
+					var committeesResults = [];
 
-
-        var cardRow = $("<div class='row'>");
-        var nameClicked = $("<div id='name-clicked' class='col s8'>");
-        var photoCol = $("<div id='photo-column' class='col s4'>");
-        var titleRow = $("<div class='row'>");
-        var titleSpan = $("<span id='name-clicked' class='card-title'>");
-
-        var legName = $("<p class='card-content white-text'>").text("Name : " + response.full_name);
-        var party = $("<p class='card-content white-text'>").text("Party: " + response.party);
-        var email = $("<p class='card-content white-text'>").text("Email: " + response.email);
-        
-        var photoURL = response.photo_url;
-
-        var photo = $("<img src='"+ photoURL + "' class='card-content'>");
-        var offices = response.offices;
-        var phone = $("<p class='card-content white-text'>").text("Phone: " + offices[0].phone);
-        var address = $("<p class='card-content white-text'>").text("Office Address: "+ offices[0].address);
-        var committees = response.roles;
-				var committeesResults = [];
-
-
-
-        function getCommittees(){
         	for (i = 0; i < committees.length; i++)
         	{
         		if (committees[i].type === "committee member")
@@ -127,35 +116,92 @@ $(".card-title").click(function() {
         		}
 
         	}
+        
+	        var committeesDiv = $("<p class='card-content white-text'>").text("Committees: " + committeesResults.toString());
+
+	        console.log(committees);
+	        console.log(committeesResults);
+
+	        // append all the sections
+
+	        $("#card-row").html(nameClicked);
+	        $("#card-row").append(photoCol)
+	        photoCol.append(photo);
+	        nameClicked.append(legName);
+	        nameClicked.append(party);
+	        nameClicked.append(address);
+	        nameClicked.append(phone);
+	        nameClicked.append(email);
+	        nameClicked.append(committeesDiv);
+
         }
 
-        getCommittees();
-        var committeesDiv = $("<p class='card-content white-text'>").text("Committees: " + committeesResults.toString());
+        else
+        	{
 
-        console.log(committees);
-        console.log(committeesResults);
+	        var infoBox = $("<div id='info-box' class='row'>");
+	        var infoCol = $("<div id='info-col' class='col s12'>");
 
-        // append all the sections
+	        var idCard = $("<div id='id-card' class='card blue-grey darken-1'>");
+	        var cardBlue = $("<div class='card-content white-text'>");
 
 
-        $(".section").append(infoBox);
-        $("#info-box").append(infoCol);
-        $("#info-col").append(idCard);
+	        var cardRow = $("<div class='row' id='card-row'>");
+	        var nameClicked = $("<div id='name-clicked' class='col s8'>");
+	        var photoCol = $("<div id='photo-column' class='col s4'>");
+	        var titleRow = $("<div class='row'>");
+	        var titleSpan = $("<span id='name-clicked' class='card-title'>");
 
-        infoCol.append(idCard);
-        idCard.append(cardBlue);
-        cardBlue.append(cardRow);
-        cardRow.append(nameClicked);
-        cardRow.append(photoCol);
-        photoCol.append(photo);
-        nameClicked.append(legName);
-        nameClicked.append(party);
-        nameClicked.append(address);
-        nameClicked.append(phone);
-        nameClicked.append(email);
-        nameClicked.append(committeesDiv);
+	        var legName = $("<p class='card-content white-text'>").text("Name : " + response.full_name);
+	        var party = $("<p class='card-content white-text'>").text("Party: " + response.party);
+	        var email = $("<p class='card-content white-text'>").text("Email: " + response.email);
+	        
+	        var photoURL = response.photo_url;
 
-        infoBox.append(infoCol);
+	        var photo = $("<img src='"+ photoURL + "' class='card-content'>");
+	        var offices = response.offices;
+	        var phone = $("<p class='card-content white-text'>").text("Phone: " + offices[0].phone);
+	        var address = $("<p class='card-content white-text'>").text("Office Address: "+ offices[0].address);
+	        var committees = response.roles;
+					var committeesResults = [];
+
+	        	for (i = 0; i < committees.length; i++)
+	        	{
+	        		if (committees[i].type === "committee member")
+	        		{
+	        			committeesResults.push(committees[i].committee);
+	        		}
+
+	        	}
+	        
+	        var committeesDiv = $("<p class='card-content white-text'>").text("Committees: " + committeesResults.toString());
+
+	        console.log(committees);
+	        console.log(committeesResults);
+
+	        // append all the sections
+
+
+	        $(".section").append(infoBox);
+	        $("#info-box").append(infoCol);
+	        $("#info-col").append(idCard);
+
+	        infoCol.append(idCard);
+	        idCard.append(cardBlue);
+	        cardBlue.append(cardRow);
+	        cardRow.append(nameClicked);
+	        cardRow.append(photoCol);
+	        photoCol.append(photo);
+	        nameClicked.append(legName);
+	        nameClicked.append(party);
+	        nameClicked.append(address);
+	        nameClicked.append(phone);
+	        nameClicked.append(email);
+	        nameClicked.append(committeesDiv);
+
+	        infoBox.append(infoCol);
+	      }
+        
 
     });
 
