@@ -86,3 +86,7 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
 	border: hidden;
 }
 
+.card:hover{
+	cursor: pointer;
+}
+
