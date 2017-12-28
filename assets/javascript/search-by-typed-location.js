@@ -2,6 +2,7 @@ $(document).ready(function() {
     $("#submit").on("click", function() {
 
         $("#info-box").remove();
+        $("#bill-box").remove();
 
         senatorLoaded = false;
 		assembly1Loaded = false;
