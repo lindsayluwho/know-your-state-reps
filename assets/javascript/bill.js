@@ -39,6 +39,32 @@ $(document).ready(function() {
     method: "GET"
   })
   .done(function(data) {
+
+    var billBox = $("<div id='bill-box' class='row'>");
+      var billCol = $("<div class='col s12'>");
+      var billCard = $("<div id='bill-card' class='card blue-grey darken-1'>");
+      var billBlue = $("<div class='card-content white-text'>");
+      var cardRow = $("<div class='row' id='bill-card-row'>");
+      var billNameHead = $("<th>").text("Bill Info");
+      var voteHead = $("<th>").text("How Your Rep Voted");
+      var senateHead = $("<th>").text("How It Did in the Senate");
+      var assemblyHead = $("<th>").text("How It Did in the Assembly");
+      var dateHead = $("<th>").text("Date Introduced");
+
+     
+     cardRow.prepend("<h5 id='vote-head'>Recent Voting History</h5>");
+     cardRow.append(billNameHead);
+     cardRow.append(voteHead);
+     cardRow.append(senateHead);
+     cardRow.append(assemblyHead);
+     cardRow.append(dateHead);
+
+     billBlue.append(cardRow);
+     billCard.append(billBlue);
+     billCol.append(billCard);
+     billBox.append(billCard);
+     $(".white").append(billBox);
+
     // Filters through returned data for bill Id's and does another ajax call for detailed bill info with each bill id. 
     for (var i=0; i<data.length; i++) {
       
@@ -122,6 +148,29 @@ $(document).ready(function() {
 
         }
         bills.push(bill);
+
+        var billRow = $("<tr>")
+        var billName = $("<td>")
+        var billVote = $("<td>")
+        var billSenate = $("<td>")
+        var billAssembly = $("<td>")
+        var billDate = $("<td>")
+
+
+        billName.text(bill.name);
+        billVote.text(bill.vote);
+        billSenate.text(bill.senateVote);
+        billAssembly.text(bill.assemblyVote);
+        billDate.text(bill.dateIntroduced);
+
+
+        billRow.append(billName);
+        billRow.append(billVote);
+        billRow.append(billSenate);
+        billRow.append(billAssembly);
+        billRow.append(billDate);
+
+        cardRow.append(billRow);
         
       })
 
@@ -137,9 +186,17 @@ $(document).ready(function() {
     var representativeName = ($(this).attr("name"));
     var isSenator = ($(this).attr("isSenator"));
 
+    if ($("#bill-box").length > 0){
+      $("#bill-box").remove();
+    
     console.log(isSenator);
 
     getBills(representativeName, isSenator);
+
+  } else {
+
+    getBills(representativeName, isSenator);
+  }
 
   })
   
