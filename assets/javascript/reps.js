@@ -11,6 +11,15 @@ var assembly1Loaded = false;
 var assembly2Loaded = false;
 
 
+// Side Nav Initialize
+$('.button-collapse').sideNav({
+  menuWidth: 300, // Default is 240
+  edge: 'right', // Choose the horizontal origin
+  closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+}
+);
+
+
 function success(response) {
     coordinates = response.coords;
     latitude = coordinates.latitude;
