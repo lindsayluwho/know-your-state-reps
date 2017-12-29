@@ -1,8 +1,10 @@
 $(document).ready(function() {
     $("#submit").on("click", function() {
-
-        $("#info-box").remove();
+        $("#info-box").detach();
+        $("#bill-box").detach();
+        
         $("#bill-box").remove();
+        $("#info-box").remove();
 
         senatorLoaded = false;
 		assembly1Loaded = false;
