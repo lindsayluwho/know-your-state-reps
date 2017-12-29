@@ -2,6 +2,7 @@ $(document).ready(function() {
 
   
   var getBills = (representative, isSenator) => {
+    $("#bill-box").remove();
 
 
       // This function takes a name "Dave Brudner" and returns it in last name, comma, first name form ("Brudner, Dave")
@@ -40,6 +41,7 @@ $(document).ready(function() {
   })
   .done(function(data) {
 
+
     var billBox = $("<div id='bill-box' class='row'>");
       var billCol = $("<div class='col s12'>");
       var billCard = $("<div id='bill-card' class='card blue-grey darken-1'>");
@@ -64,7 +66,8 @@ $(document).ready(function() {
      billCol.append(billCard);
      billBox.append(billCard);
      $(".white").append(billBox);
-
+  
+  
     // Filters through returned data for bill Id's and does another ajax call for detailed bill info with each bill id. 
     for (var i=0; i<data.length; i++) {
       
@@ -171,24 +174,41 @@ $(document).ready(function() {
         billRow.append(billDate);
 
         cardRow.append(billRow);
+
+
+
+
+
+
         
       })
+  
 
 
     }
     
-      console.log(bills)
+      console.log(bills);
+
+
+
+      
+
 
   })
   }
 
   $(document).on("click", ".card-title", function() {
+
     var representativeName = ($(this).attr("name"));
     var isSenator = ($(this).attr("isSenator"));
 
     if ($("#bill-box").length > 0){
       $("#bill-box").remove();
     
+
+
+    
+
     console.log(isSenator);
 
     getBills(representativeName, isSenator);
