@@ -1,6 +1,14 @@
 $(document).ready(function() {
 	$("#billSearch").on("click", function() {
 		event.preventDefault();
+
+		$("#results-div").detach();
+		$("#results-div").remove();
+
+		$("#detail-box").detach();
+		$("#detail-box").remove();
+
+
 		var searchTerm = $("#bill-input").val().trim();
 
 		var queryUrl = "https://openstates.org/api/v1/bills/?state=nj&q=" + searchTerm + "&apikey=8cef81cb-a1a4-48d3-86ff-0520d28f6ca6&per_page=10"
@@ -65,8 +73,8 @@ $(document).ready(function() {
 
 	$(document).on("click", ".more-info", function() {
 
-		$("#detail-card").detach();
-		$("#detail-card").remove();
+		$("#detail-box").detach();
+		$("#detail-box").remove();
 
 		console.log($(this).attr("data-billId"));
 
