@@ -60,6 +60,7 @@ $(document).ready(function() {
      cardRow.append(senateHead);
      cardRow.append(assemblyHead);
      cardRow.append(dateHead);
+     
 
      billBlue.append(cardRow);
      billCard.append(billBlue);

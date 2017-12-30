@@ -86,3 +86,8 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
 	border: hidden;
 }
 
+#result-box{
+	margin: 10px;
+}
+
+
