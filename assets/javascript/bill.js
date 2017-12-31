@@ -42,19 +42,20 @@ $(document).ready(function() {
   .done(function(data) {
 
 
-    var billBox = $("<div id='bill-box' class='row'>");
+      var billBox = $("<div id='bill-box' class='row'>");
       var billCol = $("<div class='col s12'>");
       var billCard = $("<div id='bill-card' class='card blue-grey darken-1'>");
       var billBlue = $("<div class='card-content white-text'>");
       var cardRow = $("<div class='row' id='bill-card-row'>");
-      var billNameHead = $("<th>").text("Bill Info");
+      var billNameHead = $("<th style='width:40%;padding:0 20px 0 0'>").text("Bill Info");
       var voteHead = $("<th>").text("How Your Rep Voted");
-      var senateHead = $("<th>").text("How It Did in the Senate");
+      var senateHead = $("<th style='width:18%'>").text("How It Did in the Senate");
       var assemblyHead = $("<th>").text("How It Did in the Assembly");
       var dateHead = $("<th>").text("Date Introduced");
 
      
      cardRow.prepend("<h5 id='vote-head'>Recent Voting History</h5>");
+     cardRow.append("<hr>");
      cardRow.append(billNameHead);
      cardRow.append(voteHead);
      cardRow.append(senateHead);
@@ -135,7 +136,7 @@ $(document).ready(function() {
         for (var i=0; i<results.actions.length; i++) {
           
 
-          bill.dateIntroduced = results.actions[0].date;
+          bill.dateIntroduced = moment(results.actions[0].date).format("MM/DD/YYYY");
           bill.name = results.title;
 
           // Defaults to no vote. If a vote is found below, bill.senateVote is changed
