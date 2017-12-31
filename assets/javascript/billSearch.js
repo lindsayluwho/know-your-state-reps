@@ -22,47 +22,73 @@ $(document).ready(function() {
 
 	  var resultsDiv = $("<div id='results-div'>");
 
-	  for (var i = 0; i < data.length; i++) {
-
-
-	  var resultBox = $("<div id='result-box' class='row'>");
+    var resultBox = $("<div id='result-box' class='row'>");
       var resultCol = $("<div class='col s12'>");
       var resultCard = $("<div id='bill-card' class='card blue-grey darken-1'>");
       var resultBlue = $("<div class='card-content white-text'>");
       var resultRow = $("<div class='row' id='bill-card-row'>");
- 
-     
-     resultRow.prepend("<h5 id='result-head'>" + data[i].title + "</h5><br>");
-     resultRow.append("<p>Date Created: " + data[i].created_at + "</p><br>");
-     resultRow.append("<p>Last Update: " + data[i].updated_at + "</p><br>");
-     resultRow.append("<p>Bill ID: " + data[i].bill_id + "</p><br>");
-     
-     if(data[i].chamber === "upper"){
-     	resultRow.append("<p>Bill created by your: Senate</p><br>");
-     }
+      var resultTable = $("<table class='bordered'>");
+      var lastUpdateHead = $("<th>").text("Last Update");
+      var billIdHead = $("<th>").text("Bill ID");
+      var createdByHead = $("<th>").text("Created by");
+      var dateHead = $("<th>").text("Date Created");
+      var moreInfoHead = $("<th>").text("More Info");
+      var nameHead = $("<th>").text("Bill");
 
-     if(data[i].chamber === "lower"){
-     	resultRow.append("<p>Bill created by your: Assembly</p><br>");
-     }
+      resultRow.prepend("<h5 id='result-head'>Search Results</h5><br>");
+      
+      resultTable.append(nameHead);
+      resultTable.append(dateHead);
+      resultTable.append(lastUpdateHead);
+      resultTable.append(billIdHead);
+      resultTable.append(createdByHead);
+      resultTable.append(moreInfoHead);
 
-     var moreInfoLink = $("<a>");
-     moreInfoLink.text("Click here to find out more");
-     moreInfoLink.attr("data-billId", data[i].id);
-     moreInfoLink.attr("class", "more-info");
-
-     resultRow.append(moreInfoLink);
-     
-
-     resultBlue.append(resultRow);
+      resultRow.append(resultTable);
+      resultBlue.append(resultRow);
      resultCard.append(resultBlue);
      resultCol.append(resultCard);
      resultBox.append(resultCard);
      resultsDiv.append(resultBox);
+
+	  for (var i = 0; i < data.length; i++) {
+
+      var tRow = $("<tr>");
+
+
+	  
+
+    
+
+     tRow.append("<td>" + data[i].title + "</td>");
+     tRow.append("<td>" + data[i].created_at + "</td>");
+     tRow.append("<td>" + data[i].updated_at + "</td>");
+     tRow.append("<td>" + data[i].bill_id + "</td>");
+     
+     if(data[i].chamber === "upper"){
+     	tRow.append("<td>Senate</td>");
+     }
+
+     if(data[i].chamber === "lower"){
+     	tRow.append("<td>Assembly</td>");
+     }
+
+     var moreInfoLink = $("<a>");
+     moreInfoLink.text("Click for more");
+     moreInfoLink.attr("data-billId", data[i].id);
+     moreInfoLink.attr("class", "more-info");
+
+     tRow.append(moreInfoLink);
+
+     resultTable.append(tRow);
+     
+
+  
 	  	
 	  		
 	  	}
 
-	  	$(".white").append(resultsDiv);
+	  	$("#results-area").append(resultsDiv);
 			
 		})
 	})
@@ -129,7 +155,7 @@ $(document).ready(function() {
      detailCard.append(detailBlue);
      detailCol.append(detailCard);
      detailBox.append(detailCard);
-     $(".white").append(detailBox);
+     $("#results-area").append(detailBox);
 
       	for (var i = 0; i<results.votes.length; i++) {
 
