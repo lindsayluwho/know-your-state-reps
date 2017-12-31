@@ -77,6 +77,7 @@ $(document).ready(function() {
      moreInfoLink.text("Click for more");
      moreInfoLink.attr("data-billId", data[i].id);
      moreInfoLink.attr("class", "more-info");
+     moreInfoLink.attr("href", "#detailBoxJump");
 
      tRow.append(moreInfoLink);
 
@@ -125,6 +126,8 @@ $(document).ready(function() {
  
      
      detailRow.prepend("<h4 id='detail-head'>Detailed Bill Information</h4><br>");
+     detailRow.prepend("<a name='detailBoxJump'></a>");
+     // detailRow.prepend("<a NAME='detailBoxJump'>");
      // resultRow.append("<p>Date Created: " + data[i].created_at + "</p><br>");
      // resultRow.append("<p>Last Update: " + data[i].updated_at + "</p><br>");
      // resultRow.append("<p>Bill ID: " + data[i].bill_id + "</p><br>");
