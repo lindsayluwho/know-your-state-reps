@@ -2,55 +2,57 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <meta name=viewport content="width=device-width, initial-scale=1">
         <title>Know Your State Reps</title>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-        <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     </head>
     <body>
         <div class="row" style="margin-bottom: 0px">
             <nav>
-                <div class="nav-wrapper blue darken-4">
-                    <a href="#" class="brand-logo center">Know Your State Reps</a>
+                <div class="nav-wrapper cyan">
+                    <a href="index.html" class="brand-logo center">Know Your State Reps</a>
                     <a href="#" class="right-align"><i data-activates="slide-out" class="button-collapse large material-icons" style="float:right">menu &nbsp;</i></a></li>
                 </div>
             </nav>
         </div>
         <!-- Side Nav Code -->
         <ul id="slide-out" class="side-nav white"">
-            <li><div class="user-view blue-grey darken-1">
+            <li><div class="user-view cyan darken-1">
                 <img src="assets/images/flag.jpg" style="margin-left:-20px;margin-top:-10px">
             </li>
             <li><div class="divider black"></div></li>
-            <li><a class="white-text blue-grey darken-1" href="index.html"><i class="material-icons" style="color:white;">home</i>Home</a></li>
+            <li><a class="white-text cyan darken-1" href="index.html"><i class="material-icons" style="color:white;">home</i>Home</a></li>
             <li><div class="divider black"></div></li>
-            <li><a class="white-text blue-grey darken-1" href="bill-search.html"><i class="material-icons prefix" style="color:white;">search</i>Search for a Bill</a></li>
+            <li><a class="white-text cyan darken-1" href="bill-search.html"><i class="material-icons prefix" style="color:white;">search</i>Search for a Bill</a></li>
             <li><div class="divider black"></div></li>
-            <li><a class="white-text blue-grey darken-1" href="contact.html"><i class="material-icons" style="color:white;">email</i>Contact Us</a></li>
+            <li><a class="white-text cyan darken-1" href="contact.html"><i class="material-icons" style="color:white;">email</i>Contact Us</a></li>
             <li><div class="divider black"></div></li>
-            <div class="blue-grey darken-1" style="height:250px"></div>
+            <div class="cyan darken-1" style="height:250px"></div>
         </div>
     </ul>
-    <div id="search-bar-div">
+<div class="parallax-container" id="bill-search-header" style="height: 1000px;">
+    <div class="section">
         <div class="container">
+            <div id="search-bar-div">
             <div class="search-wrapper input-field">
-                <i class="material-icons prefix">search</i><input id="bill-input" placeholder="Search for a NJ bill">
-                <button id="billSearch">submit</button>
+              <input id="bill-input" placeholder="Search for a NJ bill">
+              <button id="billSearch" class="btn-floating cyan white-text"><i class="material-icons">search</i></button>
+            </div>
             </div>
         </div>
     </div>
-    <div class="container">
-        <div id="results-area" class="section white">
-    </div>
-</div>
-<div class="parallax-container">
     <div class="parallax">
-        <img src="assets/1024px-New_Jersey_state_capitol.jpg" class="responsive-img" style="display: block;">
+        <img src="assets/american_flag_flag_waving_american_usa_american_flag_waving_united_states-834559.jpg" class="responsive-img" style="display: block;">
     </div>
 </div>
-<footer class="page-footer blue">
-    <div class="footer-copyright blue darken-4">
+
+<div class="results"></div>
+
+<footer class="page-footer cyan lighten-1">
+    <div class="footer-copyright cyan">
         <div class="container">
             <span class="left">Know Your State Reps</span>
             <span class="right"> © 2017</span>

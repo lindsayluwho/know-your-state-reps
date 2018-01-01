@@ -10,12 +10,17 @@ footer {
 }
 
 nav {
-	font-family: 'Special Elite', cursive;
+	font-family: 'Shrikhand', cursive;
 }
 
 a.brand-logo {
-	font-size: 50px;
+	font-size: 4vw;
 	padding: 3px;
+
+}
+
+#menu-icon:hover {
+	cursor:pointer;
 }
 
 #contact-head{
@@ -36,17 +41,36 @@ a.brand-logo {
 
 .search-wrapper { 
     position: relative;
+    left: 9%;
     background-color: #fff;
     border-radius: 2px;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
     font-size: 16px;
     font-weight: 300;
-    width: 50%;
+    width: 80%;
     height: 45px;
-    margin: 10% 25%;
+    margin-top: 10%;
     box-sizing: border-box;
-    padding: 0 45px 0 15px;
+    padding: 0 15px 0 15px;
     border: 0;
+}
+
+#search {
+	border-bottom: 0;
+	margin-bottom: 0;
+}
+
+#search:focus {
+	border-bottom: 0;
+	border: hidden;
+}
+
+#submit, #billSearch {
+	z-index: 1;
+	position: relative;
+	left: 92%;
+	top: -80%;
+	text-shadow: 1px 2px 2px #000000;
 }
 
 input:not([type]), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), textarea.materialize-textarea {
@@ -77,17 +101,14 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
     z-index: -1;
 }
 
-#search:focus {
-	border: hidden;
-}
-
-.card:hover{
+#reps-card:hover{
 	cursor: pointer;
 }
 
 #bill-box{
 	height: 500px;
 	overflow: scroll;
+	padding: 10px;
 }
 
 th {
@@ -98,5 +119,31 @@ th {
 	text-align: center;
 }
 
+#info-box{
+	padding: 10px;
+}
+
+
+a.more-info {
+	color: white;
+	font-weight: 600;
+}
+
+a.more-info:hover {
+	text-decoration: underline;
+}
+
+a#more-details {
+	color: white;
+	font-weight: 600;
+}
+
+a#more-details:hover {
+	text-decoration: underline;
+}
+
+#results-area {
+	margin-top: 20px;
+}
 
 
