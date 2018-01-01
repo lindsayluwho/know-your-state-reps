@@ -68,7 +68,7 @@ $(document).ready(function() {
      billCard.append(billBlue);
      billCol.append(billCard);
      billBox.append(billCard);
-     $(".white").append(billBox);
+     $(".cards-section").append(billBox);
   
   
     // Filters through returned data for bill Id's and does another ajax call for detailed bill info with each bill id. 
