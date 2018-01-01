@@ -2,7 +2,9 @@ $(document).ready(function() {
 	$("#billSearch").on("click", function() {
 		event.preventDefault();
 
-		$("#results-div").detach();
+    $(".results").empty();
+
+    $("#results-div").detach();
 		$("#results-div").remove();
 
 		$("#detail-box").detach();
@@ -24,7 +26,7 @@ $(document).ready(function() {
 
     var resultBox = $("<div id='result-box' class='row'>");
       var resultCol = $("<div class='col s12'>");
-      var resultCard = $("<div id='bill-card' class='card blue-grey darken-1'>");
+      var resultCard = $("<div id='bill-card' class='card cyan darken-1'>");
       var resultBlue = $("<div class='card-content white-text'>");
       var resultRow = $("<div class='row' id='bill-card-row'>");
       var resultTable = $("<table class='bordered'>");
@@ -88,6 +90,9 @@ $(document).ready(function() {
 	  	
 	  		
 	  	}
+      $(".parallax-container").attr("style","height: 200px;");
+      $(".results").append("<div class='container'><div class='section'><div id='results-area'>");
+      $(".results").append("<div class='parallax-container' style='height: 200px;'><div class='parallax'><img src='assets/american_flag_flag_waving_american_usa_american_flag_waving_united_states-834559.jpg' class='responsive-img' style='display: block;'>");
 
 	  	$("#results-area").append(resultsDiv);
 			
@@ -120,7 +125,7 @@ $(document).ready(function() {
 
       var detailBox = $("<div id='detail-box' class='row'>");
       var detailCol = $("<div class='col s12'>");
-      var detailCard = $("<div id='detail-card' class='card blue-grey darken-1'>");
+      var detailCard = $("<div id='detail-card' class='card cyan darken-1'>");
       var detailBlue = $("<div class='card-content white-text'>");
       var detailRow = $("<div class='row' id='bill-card-row'>");
  
@@ -185,6 +190,7 @@ $(document).ready(function() {
 
       		var urlLink = $("<a>");
       		urlLink.attr("href", url);
+          urlLink.attr("id", "more-details");
       		urlLink.text("Version " + (i+1) + " | ");
       		urlLink.attr("target", "_blank");
 

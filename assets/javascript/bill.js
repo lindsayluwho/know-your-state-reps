@@ -2,7 +2,8 @@ $(document).ready(function() {
 
   
   var getBills = (representative, isSenator) => {
-    $("#bill-box").remove();
+
+      $("#bill-box").remove();
 
 
       // This function takes a name "Dave Brudner" and returns it in last name, comma, first name form ("Brudner, Dave")
@@ -44,7 +45,7 @@ $(document).ready(function() {
 
       var billBox = $("<div id='bill-box' class='row'>");
       var billCol = $("<div class='col s12'>");
-      var billCard = $("<div id='bill-card' class='card blue-grey darken-1'>");
+      var billCard = $("<div id='bill-card' class='card cyan darken-1'>");
       var billBlue = $("<div class='card-content white-text'>");
       var cardRow = $("<div class='row' id='bill-card-row'>");
       var billNameHead = $("<th style='width:40%;padding:0 20px 0 0'>").text("Bill Info");
