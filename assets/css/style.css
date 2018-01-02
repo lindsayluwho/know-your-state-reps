@@ -26,6 +26,7 @@ a.brand-logo {
 #contact-head{
 	text-align: center;
 	padding: 20px;
+	margin-top: 80px;
 }
 
 #contact-text{
@@ -146,4 +147,8 @@ a#more-details:hover {
 	margin-top: 20px;
 }
 
+/* label color */
+.input-field label {
+	color: white;
+}
 
