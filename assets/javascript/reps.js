@@ -243,4 +243,12 @@ $(".card-title").click(function() {
 
 });
 
-navigator.geolocation.getCurrentPosition(success);
+$("#location-search").click(function(){
+
+    senatorLoaded = false;
+    assembly1Loaded = false;
+    assembly2Loaded = false; 
+
+    navigator.geolocation.getCurrentPosition(success);
+
+});

@@ -3,38 +3,63 @@ var latitude = null;
 var longitude = null;
 
 function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 40.217052, lng: -74.742938},
-          zoom: 8
-        });
-        infoWindow = new google.maps.InfoWindow;
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: { lat: 40.217052, lng: -74.742938 },
+        zoom: 8
+    });
 
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
+    infoWindow = new google.maps.InfoWindow;
+
+};
+
+// Actual function call for geolocation.
+$("#location-search").click(function() {
+
+    navigator.geolocation.getCurrentPosition(success);
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+
             var pos = {
-              lat: latitude,
-              lng: longitude
+                lat: latitude,
+                lng: longitude
             };
 
-             var marker = new google.maps.Marker({
-          position: pos,
-          map: map
-          });
+            var marker = new google.maps.Marker({
+                position: pos,
+                map: map
+            });
 
+            $("#search").val(latitude + ", " + longitude);
             
+            var geocoder = new google.maps.Geocoder;
+
+            var latlng = {lat: parseFloat(latitude), lng: parseFloat(longitude)};
+
+            geocoder.geocode({ 'location': latlng }, function(results, status) {
+                if (status === 'OK') {
+                    if (results[0]) {
+                        map.setZoom(11);
+                        $("#search").val(results[0].formatted_address);
+                    }
+                }
+            });
+
             map.setCenter(pos);
-          }, function() {
+
+        }, function() {
             handleLocationError(true, infoWindow, map.getCenter());
-          });
-        } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
-        }
-      }
+        });
+    } else {
+        // Browser doesn't support Geolocation
+        handleLocationError(false, infoWindow, map.getCenter());
+    }
+});
 
 // Function if the request for a user's geolocation is successful
 function success(response) {
+
+
     coordinates = response.coords;
     latitude = coordinates.latitude;
     longitude = coordinates.longitude;
@@ -42,14 +67,10 @@ function success(response) {
 
 
 
-    $.getJSON(url, function(data){
+    $.getJSON(url, function(data) {
         // console.log(data)
         $("#names").append(data[0].full_name)
     });
 
-  // console.log(url);
+    // console.log(url);
 };
-
-// Actual function call for geolocation.
-navigator.geolocation.getCurrentPosition(success);
-

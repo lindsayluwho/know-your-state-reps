@@ -89,7 +89,7 @@ $(document).ready(function() {
             var uluru = { lat: latitude, lng: longitude };
 
             var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 8,
+                zoom: 11,
                 center: uluru
             });
             var marker = new google.maps.Marker({

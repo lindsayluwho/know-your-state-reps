@@ -69,8 +69,8 @@ a.brand-logo {
 #submit, #billSearch {
 	z-index: 1;
 	position: relative;
-	left: 92%;
-	top: -80%;
+	left: 100%;
+	top: -65%;
 	text-shadow: 1px 2px 2px #000000;
 }
 
@@ -150,5 +150,9 @@ a#more-details:hover {
 /* label color */
 .input-field label {
 	color: white;
+}
+
+#location-search:hover {
+	cursor: pointer;
 }
 
