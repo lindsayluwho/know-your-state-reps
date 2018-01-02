@@ -89,8 +89,7 @@ $("#location-search").click(function() {
             handleLocationError(false, infoWindow, map.getCenter());
           }
         }
-        };
-
+        
 
 
 // Function if the request for a user's geolocation is successful

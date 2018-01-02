@@ -268,7 +268,13 @@ var lastLongitude = localStorage.getItem("longitude");
 
 if (lastLatitude ==null && lastLongitude ==null) {
     console.log("success");
-    navigator.geolocation.getCurrentPosition(success);
+    $("#location-search").click(function(){
+
+        senatorLoaded = false;
+        assembly1Loaded = false;
+        assembly2Loaded = false;
+        navigator.geolocation.getCurrentPosition(success);
+    });
 } else {
     var url = "https://openstates.org/api/v1/legislators/geo/?lat=" + lastLatitude + "&long=" + lastLongitude + "&apikey=8cef81cb-a1a4-48d3-86ff-0520d28f6ca6"
 
