@@ -33,12 +33,12 @@ $(document).ready(function() {
       var lastUpdateHead = $("<th>").text("Last Update");
       var billIdHead = $("<th>").text("Bill ID");
       var createdByHead = $("<th>").text("Created by");
-      var dateHead = $("<th>").text("Date Created");
-      var moreInfoHead = $("<th>").text("More Info");
-      var nameHead = $("<th>").text("Bill");
+      var dateHead = $("<th style='width:18%'>").text("Date Created");
+      var moreInfoHead = $("<th>").text("");
+      var nameHead = $("<th style='width:35%;padding:0 20px 0 0'>").text("Bill");
 
       resultRow.prepend("<h5 id='result-head'>Search Results</h5><br>");
-      
+      resultRow.append("<hr>");
       resultTable.append(nameHead);
       resultTable.append(dateHead);
       resultTable.append(lastUpdateHead);
@@ -75,13 +75,15 @@ $(document).ready(function() {
      	tRow.append("<td>Assembly</td>");
      }
 
+     var moreInfoTd = $("<td>");
      var moreInfoLink = $("<a>");
      moreInfoLink.text("Click for more");
      moreInfoLink.attr("data-billId", data[i].id);
      moreInfoLink.attr("class", "more-info");
      moreInfoLink.attr("href", "#detailBoxJump");
-
-     tRow.append(moreInfoLink);
+     // tRow.append("<td>" + moreInfoLink + "</td>");
+     moreInfoTd.append(moreInfoLink);
+     tRow.append(moreInfoTd);
 
      resultTable.append(tRow);
      
@@ -191,7 +193,7 @@ $(document).ready(function() {
       		var urlLink = $("<a>");
       		urlLink.attr("href", url);
           urlLink.attr("id", "more-details");
-      		urlLink.text("Version " + (i+1) + " | ");
+      		urlLink.text("Version " + (i+1) + " ");
       		urlLink.attr("target", "_blank");
 
       		linkP.append(urlLink);
