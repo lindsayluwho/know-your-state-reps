@@ -249,6 +249,17 @@ $(".card-title").click(function() {
 
 });
 
+
+$("#location-search").click(function(){
+
+    senatorLoaded = false;
+    assembly1Loaded = false;
+    assembly2Loaded = false; 
+
+    navigator.geolocation.getCurrentPosition(success);
+
+});
+
 var lastLatitude = localStorage.getItem("latitude");
 var lastLongitude = localStorage.getItem("longitude");
 
@@ -263,5 +274,6 @@ if (lastLatitude ==null && lastLongitude ==null) {
 
     searchRep(lastLatitude, lastLongitude)
 };
+
 
 
