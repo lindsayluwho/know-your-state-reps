@@ -16,6 +16,10 @@ function success(response) {
     coordinates = response.coords;
     latitude = coordinates.latitude;
     longitude = coordinates.longitude;
+
+    localStorage.setItem("latitude",latitude);
+    localStorage.setItem("longitude",longitude);
+
     var url = "https://openstates.org/api/v1/legislators/geo/?lat=" + latitude + "&long=" + longitude + "&apikey=8cef81cb-a1a4-48d3-86ff-0520d28f6ca6"
 
     searchRep(latitude, longitude)
@@ -84,6 +88,8 @@ function searchRep(latitude, longitude) {
         });
 
 }
+
+
 
 $(".card-title").click(function() {
 
@@ -243,4 +249,19 @@ $(".card-title").click(function() {
 
 });
 
-navigator.geolocation.getCurrentPosition(success);
+var lastLatitude = localStorage.getItem("latitude");
+var lastLongitude = localStorage.getItem("longitude");
+
+// console.log (lastLatitude);
+// console.log (lastLongitude);
+
+if (lastLatitude ==null && lastLongitude ==null) {
+    console.log("success");
+    navigator.geolocation.getCurrentPosition(success);
+} else {
+    var url = "https://openstates.org/api/v1/legislators/geo/?lat=" + lastLatitude + "&long=" + lastLongitude + "&apikey=8cef81cb-a1a4-48d3-86ff-0520d28f6ca6"
+
+    searchRep(lastLatitude, lastLongitude)
+};
+
+
