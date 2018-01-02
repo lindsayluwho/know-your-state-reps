@@ -84,6 +84,9 @@ $(document).ready(function() {
             latitude = response.results[0].geometry.location.lat
             longitude = response.results[0].geometry.location.lng
 
+            localStorage.setItem("latitude",latitude);
+            localStorage.setItem("longitude",longitude);            
+
             searchRep(latitude, longitude);
 
             var uluru = { lat: latitude, lng: longitude };
