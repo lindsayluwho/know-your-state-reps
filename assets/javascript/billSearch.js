@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$("#billSearch").on("click", function() {
+	$("#bill-search-form").on("submit", function(event) {
 		event.preventDefault();
 
     $(".results").empty();
@@ -138,27 +138,57 @@ $(document).ready(function() {
      // resultRow.append("<p>Date Created: " + data[i].created_at + "</p><br>");
      // resultRow.append("<p>Last Update: " + data[i].updated_at + "</p><br>");
      // resultRow.append("<p>Bill ID: " + data[i].bill_id + "</p><br>");
+     var linkHeadDiv = $("<div>");
      var linkHead = $("<h6>").html("<strong>Click below for the bill's documentation</strong><br>");
+     var linkPDiv = $("<div>");
      var linkP = $("<p>");
-     var yesHead = $("<br><h6>").html('<strong>Number of "Yes" Votes</strong><br>');
-     var yesCount = $("<p>");
-      var yesNameHead = $("<br><h6>").html('<strong>Names of Reps Who Voted "Yes"</strong>');
-      var nameList = $("<p>");
-      var comYesHead = $("<br><h6>").html('<strong>Number of "Yes" Votes from the Committee</strong><br>');
-      var comYesCount = $("<p>");
-      var comYesNameHead = $("<br><h6>").html('<strong>Names of Committee Members Who Voted "Yes"</strong>');
-      var comNameList = $("<p>");
 
-   	  detailRow.append(linkHead);
-   	  detailRow.append(linkP);
-      detailRow.append(yesHead);
-      detailRow.append(yesCount)
-      detailRow.append(yesNameHead);
-      detailRow.append(nameList);
-      detailRow.append(comYesHead);
-      detailRow.append(comYesCount)
-      detailRow.append(comYesNameHead);
-      detailRow.append(comNameList);
+     var yesHeadDiv = $("<div>");
+     var yesHead = $("<br><h6>").html('<strong>Number of "Yes" Votes</strong><br>');
+     var yesCountDiv = $("<div>");
+     var yesCount = $("<p id='number-of-yes-votes'>");
+     yesCount.text("No vote recorded");
+
+     var yesNameHeadDiv = $("<div>");
+      var yesNameHead = $("<br><h6>").html('<strong>Names of Reps Who Voted "Yes"</strong>');
+      var nameListDiv = $("<div>");
+      var nameList = $("<p id='names-of-yes-reps'>");
+      nameList.text("No vote recorded");
+
+      var comYesHeadDiv = $("<div>");
+      var comYesHead = $("<br><h6>").html('<strong>Number of "Yes" Votes from the Committee</strong><br>');
+      var comYesCountDiv = $("<div>");
+      var comYesCount = $("<p id='number-of-com-yes'>");
+      comYesCount.text("No vote recorded");
+
+      var comYesNameHeadDiv = $("<div>");
+      var comYesNameHead = $("<br><h6>").html('<strong>Names of Committee Members Who Voted "Yes"</strong>');
+      var comNameListDiv = $("<div>");
+      var comNameList = $("<p  id='names-of-com-yes'>");
+      comNameList.text("No vote recorded");
+
+
+      linkHeadDiv.append(linkHead);
+      linkPDiv.append(linkP);
+      yesHeadDiv.append(yesHead);
+      yesCountDiv.append(yesCount);
+      yesNameHeadDiv.append(yesNameHead);
+      nameListDiv.append(nameList);
+      comYesCountDiv.append(comYesCount);
+      comNameListDiv.append(comNameList);
+      comYesHeadDiv.append(comYesHead);
+      comYesNameHeadDiv.append(comYesNameHead);
+
+   	  detailRow.append(linkHeadDiv);
+   	  detailRow.append(linkPDiv);
+      detailRow.append(yesHeadDiv);
+      detailRow.append(yesCountDiv)
+      detailRow.append(yesNameHeadDiv);
+      detailRow.append(nameListDiv);
+      detailRow.append(comYesHeadDiv);
+      detailRow.append(comYesCountDiv)
+      detailRow.append(comYesNameHeadDiv);
+      detailRow.append(comNameListDiv);
 
 
      detailBlue.append(detailRow);
@@ -173,7 +203,8 @@ $(document).ready(function() {
 
       		if(votes.motion === "3RDG FINAL PASSAGE"){
       			
-      			yesCount.append(votes.yes_count);
+      			yesCount.text(votes.yes_count);
+            nameList.empty();
 
       			for (var j = 0; j < votes.yes_votes.length; j++) {
 
@@ -181,6 +212,12 @@ $(document).ready(function() {
       				nameList.append(yesVotes.name + " | ");
       				
       			}
+
+            console.log($("#names-of-yes-reps").text());
+            var ridOfLine = $("#names-of-yes-reps").text().substr(0, (($("#names-of-yes-reps").text().length) - 2)) ;
+            $("#names-of-yes-reps").text(ridOfLine);
+            console.log(ridOfLine);
+            console.log($("#names-of-yes-reps").text().length);
       		}
 
       	}
@@ -207,7 +244,8 @@ $(document).ready(function() {
 
       		if(votes.motion === "Reported favorably out of committee"){
       			
-      			comYesCount.append(votes.yes_count);
+      			comYesCount.text(votes.yes_count);
+            comNameList.empty();
 
       			for (var j = 0; j < votes.yes_votes.length; j++) {
 
@@ -215,12 +253,21 @@ $(document).ready(function() {
       				comNameList.append(yesVotes.name + " | ");
       				
       			}
+
+            var ridOfLine = $("#names-of-com-yes").text().substr(0, (($("#names-of-com-yes").text().length) - 2)) ;
+            $("#names-of-com-yes").text(ridOfLine);
       		}
 
       	}
+
+       
+    
       	
       })
 
+      
+
+      
 	})
 
 })
