@@ -7,6 +7,16 @@ $(document).ready(function() {
   }
 
 
+  var state = localStorage.getItem("kysr-state");
+
+
+  var optionExists = false;
+  var optionExists = ($("#select-state option[value="+state+"]").length > 0);
+
+  if (state!==null && optionExists) {
+    $(".select-dropdown").val(state).change();
+
+  }
 
   $("#bill-search-form").on("submit", function(event) {
     event.preventDefault();
