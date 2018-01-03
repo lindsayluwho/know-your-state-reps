@@ -10,6 +10,26 @@ var senatorLoaded = false;
 var assembly1Loaded = false;
 var assembly2Loaded = false;
 
+function getState(address) {
+
+    address = address.split("").filter((letter) => {
+        return letter != ","
+    })
+
+    address = address.join("")
+    // console.log(address);
+
+    var split = address.split(" ")
+    // console.log(split);
+
+    var twoLettersOnly = split.filter((word) => {
+        return word.length === 2;
+    })
+
+    return twoLettersOnly[twoLettersOnly.length - 1]
+}
+
+
 var getBills = (representative, isSenator, latitude, longitude) => {
 
     var latitude = localStorage.getItem("latitude");
@@ -47,15 +67,33 @@ var getBills = (representative, isSenator, latitude, longitude) => {
 
     var state;
     // Url to retrieve 10 bills
-
+    console.log("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude + "&key=AIzaSyANSUk1NNP2yDUSd94AklPQonusBBP16PI");
     $.ajax({
             url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude + "&key=AIzaSyANSUk1NNP2yDUSd94AklPQonusBBP16PI",
             method: "GET"
         })
         .done(function(data) {
 
-            var state = data.results[1].address_components[4].short_name;
-            console.log(state);
+            var state = getState(data.results[3].formatted_address)
+
+            // var state = "nj"
+            // console.log("HI")
+            // if (!data.results[1]) {
+            //     console.log(data.results[1])
+
+            // }
+            
+            // else {
+            //     console.log("SDF")
+            //     console.log(data)
+            // } 
+
+            // if (data.results[1].address_components[4].short_name) {
+            //     state = data.results[1].address_components[4].short_name;
+            //     console.log(state);    
+            // }
+            
+            
 
         
 
