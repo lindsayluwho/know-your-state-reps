@@ -114,20 +114,24 @@ var getBills = (representative, isSenator, latitude, longitude) => {
             var billCard = $("<div id='bill-card' class='card cyan darken-1'>");
             var billBlue = $("<div class='card-content white-text'>");
             var cardRow = $("<div class='row' id='bill-card-row'>");
-            var billNameHead = $("<th style='width:40%;padding:0 20px 0 0'>").text("Bill Info");
-            var voteHead = $("<th>").text("How Your Rep Voted");
-            var senateHead = $("<th style='width:18%'>").text("How It Did in the Senate");
-            var assemblyHead = $("<th>").text("How It Did in the Assembly");
-            var dateHead = $("<th>").text("Date Introduced");
+            var billsUl = $("<ul class='collapsible popout' data-collapsible='accordion'>");
+            
+            // var billNameHead = $("<th style='width:40%;padding:0 20px 0 0'>").text("Bill Info");
+            // var voteHead = $("<th>").text("How Your Rep Voted");
+            // var senateHead = $("<th style='width:18%'>").text("How It Did in the Senate");
+            // var assemblyHead = $("<th>").text("How It Did in the Assembly");
+            // var dateHead = $("<th>").text("Date Introduced");
 
 
             cardRow.prepend("<h5 id='vote-head'>Recent Voting History</h5>");
             cardRow.append("<hr>");
-            cardRow.append(billNameHead);
-            cardRow.append(voteHead);
-            cardRow.append(senateHead);
-            cardRow.append(assemblyHead);
-            cardRow.append(dateHead);
+            cardRow.append(billsUl);
+
+            // cardRow.append(billNameHead);
+            // cardRow.append(voteHead);
+            // cardRow.append(senateHead);
+            // cardRow.append(assemblyHead);
+            // cardRow.append(dateHead);
 
 
             billBlue.append(cardRow);
@@ -156,6 +160,7 @@ var getBills = (representative, isSenator, latitude, longitude) => {
 
                         // Bill votes default to no or other. We change the vote to yes later. This is easier and faster than writing 3 loops to search through bill's voting records, but this can be changed if we'd like.
                         bill.vote = "no or other"
+                        voteIcon = "thumb_down"
                         bill.senateVote = "No vote reported";
                         bill.assemblyVote = "No vote reported";
 
@@ -173,6 +178,7 @@ var getBills = (representative, isSenator, latitude, longitude) => {
                                 for (var j = 0; j < results.votes[i].yes_votes.length; j++) {
                                     if (results.votes[i].yes_votes[j].name === lastNameCommaFirstName) {
                                         bill.vote = "yes";
+                                        voteIcon = "thumb_up"
                                     }
                                 }
                             }
@@ -188,6 +194,7 @@ var getBills = (representative, isSenator, latitude, longitude) => {
                                 for (var j = 0; j < results.votes[i].yes_votes.length; j++) {
                                     if (results.votes[i].yes_votes[j].name === lastNameCommaFirstName) {
                                         bill.vote = "yes";
+                                        voteIcon = "thumb_up"
                                     }
                                 }
                             }
@@ -213,28 +220,32 @@ var getBills = (representative, isSenator, latitude, longitude) => {
                         }
                         bills.push(bill);
 
-                        var billRow = $("<tr>")
-                        var billName = $("<td>")
-                        var billVote = $("<td>")
-                        var billSenate = $("<td>")
-                        var billAssembly = $("<td>")
-                        var billDate = $("<td>")
+                        var billLi = $("<li>")
+                        var billName = $("<div class='collapsible-header cyan darken-1'>")
+                        
+                        var billVote = $("<i class='material-icons'>")
+                        
+                        var billSenate = $("<div class='collapsible-body cyan'><span>")
+                        var billAssembly = $("<span>")
+                        var billDate = $("<span>")
 
+                        billVote.text(voteIcon);
+                        billName.append(billVote);
+                        billName.append(bill.name);
 
-                        billName.text(bill.name);
-                        billVote.text(bill.vote);
-                        billSenate.text(bill.senateVote);
-                        billAssembly.text(bill.assemblyVote);
-                        billDate.text(bill.dateIntroduced);
+                        billSenate.append("<strong>How the bill did in the Senate</strong> <br>" + bill.senateVote + "<br><br>");
+                        billAssembly.append("<strong>How the bill did in the Assembly</strong><br> " + bill.assemblyVote + "<br><br>");
+                        billDate.append("<strong>Date the bill was introduced</strong><br> " + bill.dateIntroduced);
 
+                        billLi.append(billName);
 
-                        billRow.append(billName);
-                        billRow.append(billVote);
-                        billRow.append(billSenate);
-                        billRow.append(billAssembly);
-                        billRow.append(billDate);
+                        billSenate.append(billAssembly);
+                        billSenate.append(billDate);
+                        
+                        billLi.append(billSenate);
 
-                        cardRow.append(billRow);
+                        billsUl.append(billLi);
+                        $('.collapsible').collapsible();
 
                     })
             }
