@@ -1,6 +1,5 @@
 $(document).ready(function() {
 
-
   function getFirstTwoWords(string){
     var split = string.split(" ")
     return(split[0] + " " + split[1])
@@ -50,22 +49,11 @@ $(document).ready(function() {
       var resultCard = $("<div id='bill-card' class='card cyan darken-1'>");
       var resultBlue = $("<div class='card-content white-text'>");
       var resultRow = $("<div class='row' id='bill-card-row'>");
-      var resultTable = $("<table class='bordered'>");
-      var lastUpdateHead = $("<th>").text("Last Update");
-      var billIdHead = $("<th>").text("Bill ID");
-      var createdByHead = $("<th>").text("Created by");
-      var dateHead = $("<th style='width:18%'>").text("Date Created");
-      var moreInfoHead = $("<th>").text("");
-      var nameHead = $("<th style='width:35%;padding:0 20px 0 0'>").text("Bill");
+      var resultTable = $("<ul class='collapsible popout' data-collapsible='accordion'>");
+
 
       resultRow.prepend("<h5 id='result-head'>Search Results</h5><br>");
       resultRow.append("<hr>");
-      resultTable.append(nameHead);
-      resultTable.append(dateHead);
-      resultTable.append(lastUpdateHead);
-      resultTable.append(billIdHead);
-      resultTable.append(createdByHead);
-      resultTable.append(moreInfoHead);
 
       resultRow.append(resultTable);
       resultBlue.append(resultRow);
@@ -76,51 +64,51 @@ $(document).ready(function() {
 
     for (var i = 0; i < data.length; i++) {
 
-      var tRow = $("<tr>");
+      var tRow = $("<li>");
+      var billTitle = $("<div class='collapsible-header cyan darken-1'>" + data[i].title + "</div>");
 
+     tRow.append(billTitle);
 
-    
-
-    
-
-     tRow.append("<td>" + data[i].title + "</td>");
-     tRow.append("<td>" + data[i].created_at + "</td>");
-     tRow.append("<td>" + data[i].updated_at + "</td>");
-     tRow.append("<td>" + data[i].bill_id + "</td>");
+     var billBody = $("<div class='collapsible-body cyan'>");
+     
+     billBody.append("<span>Date Created: " + data[i].created_at + "<br></span>");
+     billBody.append("<span>Last Update: " + data[i].updated_at + "<br></span>");
+     billBody.append("<span>Bill ID:" + data[i].bill_id + "<br></span>");
      
      if(data[i].chamber === "upper"){
-      tRow.append("<td>Senate</td>");
+      billBody.append("<span>Created by: Senate<br></span>");
      }
 
      if(data[i].chamber === "lower"){
-      tRow.append("<td>Assembly</td>");
+      billBody.append("<span>Created by: Assembly<br></span>");
      }
 
-     var moreInfoTd = $("<td>");
+     var moreInfoTd = $("<span>");
      var moreInfoLink = $("<a>");
      moreInfoLink.text("Click for more");
      moreInfoLink.attr("data-billId", data[i].id);
      moreInfoLink.attr("class", "more-info");
      moreInfoLink.attr("href", "#detailBoxJump");
-     // tRow.append("<td>" + moreInfoLink + "</td>");
      moreInfoTd.append(moreInfoLink);
-     tRow.append(moreInfoTd);
+     billBody.append(moreInfoTd);
 
+     tRow.append(billBody);
      resultTable.append(tRow);
-     
-
-  
-      
         
       }
-      $(".parallax-container").attr("style","height: 200px;");
+      $(".parallax-container").attr("style","height: 400px;");
       $(".results").append("<div class='container'><div class='section'><div id='results-area'>");
       $(".results").append("<div class='parallax-container' style='height: 200px;'><div class='parallax'><img src='assets/american_flag_flag_waving_american_usa_american_flag_waving_united_states-834559.jpg' class='responsive-img' style='display: block;'>");
 
       $("#results-area").append(resultsDiv);
+
+          // COLLAPSIBLE
+
+      $('.collapsible').collapsible();
       
     })
   })
+
 
 
 
@@ -153,7 +141,7 @@ $(document).ready(function() {
       var detailRow = $("<div class='row' id='bill-card-row'>");
  
      
-     detailRow.prepend("<h4 id='detail-head'>Detailed Bill Information</h4><br>");
+     detailRow.prepend("<h4 id='detail-head'>Additional Bill Information</h4><br>");
      detailRow.prepend("<a name='detailBoxJump'></a>");
      // detailRow.prepend("<a NAME='detailBoxJump'>");
      // resultRow.append("<p>Date Created: " + data[i].created_at + "</p><br>");
