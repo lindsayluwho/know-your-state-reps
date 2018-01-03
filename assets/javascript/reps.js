@@ -454,7 +454,16 @@ $(".card-title").click(function() {
 
         var lastLatitude = localStorage.getItem("latitude");
         var lastLongitude = localStorage.getItem("longitude");
-        var isSenator = "true";
+        
+        var isSenator;
+
+
+        if (response.chamber === "upper") {
+        	isSenator = "true";
+        }
+        if (response.chamber === "lower"){
+        	isSenator = "false"
+        }
 
         getBills(response.full_name, isSenator, latitude, longitude)
     });
