@@ -6,6 +6,10 @@ $(document).ready(function(){
     //Bill Search state selector
     $('select').material_select();
 
+
+
+
+
       // Side Nav Initialize
 	$('.button-collapse').sideNav({
 	  menuWidth: 300, // Default is 240
