@@ -76,6 +76,8 @@ var getBills = (representative, isSenator, latitude, longitude) => {
 
             var state = getState(data.results[3].formatted_address)
 
+            localStorage.setItem("kysr-state", state);
+
             // var state = "nj"
             // console.log("HI")
             // if (!data.results[1]) {
