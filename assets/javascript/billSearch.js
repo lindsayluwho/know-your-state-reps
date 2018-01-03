@@ -7,6 +7,7 @@ $(document).ready(function() {
   }
 
 
+
   $("#bill-search-form").on("submit", function(event) {
     event.preventDefault();
 
@@ -20,9 +21,11 @@ $(document).ready(function() {
 
 
     var searchTerm = $("#bill-input").val().trim();
+    var state = $(":selected").val();
+    console.log(state);
 
-    var queryUrl = "https://openstates.org/api/v1/bills/?state=nj&q=" + searchTerm + "&apikey=8cef81cb-a1a4-48d3-86ff-0520d28f6ca6&per_page=10"
-  
+    var queryUrl = "https://openstates.org/api/v1/bills/?state=" + state + "&q=" + searchTerm + "&apikey=8cef81cb-a1a4-48d3-86ff-0520d28f6ca6&per_page=10"
+    console.log(queryUrl);
 
     $.ajax({
       url: queryUrl,
