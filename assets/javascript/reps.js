@@ -35,9 +35,6 @@ var getBills = (representative, isSenator, latitude, longitude) => {
     var latitude = localStorage.getItem("latitude");
     var longitude = localStorage.getItem("longitude");
 
-    console.log(latitude);
-    console.log(longitude);
-
     $("#bill-box").remove();
 
     // This function takes a name "Dave Brudner" and returns it in last name, comma, first name form ("Brudner, Dave")
@@ -50,13 +47,25 @@ var getBills = (representative, isSenator, latitude, longitude) => {
             var firstName = name[0]
             var lastName = name[1]
             var lastNameCommaFirstName = lastName + ", " + firstName;
+            console.log(lastNameCommaFirstName)
             return lastNameCommaFirstName
         }
 
         if (name.length === 3) {
+        	var firstName = name[0]
             var lastName = name[2]
-            var firstAndMiddle = name[0] + " " + name[1]
-            var lastNameCommaFirstName = lastName + ", " + firstAndMiddle
+            console.log(name);
+            var middleName;
+            if (name[1].length === 1) {
+            	middleName = name[1] + "."
+            }
+            else {
+            	middleName = name[1]
+            }
+
+            console.log(middleName);
+           	var lastNameCommaFirstName = `${lastName}, ${firstName} ${middleName}`
+            console.log(lastNameCommaFirstName)
             return lastNameCommaFirstName
         }
     }
@@ -67,7 +76,6 @@ var getBills = (representative, isSenator, latitude, longitude) => {
 
     var state;
     // Url to retrieve 10 bills
-    console.log("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude + "&key=AIzaSyANSUk1NNP2yDUSd94AklPQonusBBP16PI");
     $.ajax({
             url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude + "&key=AIzaSyANSUk1NNP2yDUSd94AklPQonusBBP16PI",
             method: "GET"
@@ -148,7 +156,7 @@ var getBills = (representative, isSenator, latitude, longitude) => {
 
                 // console.log("https://openstates.org/api/v1/bills/" + billId + "/?&apikey=8cef81cb-a1a4-48d3-86ff-0520d28f6ca6")
                 // Console logs detailed bill url.
-                // console.log("https://openstates.org/api/v1/bills/" + billId + "/?&apikey=8cef81cb-a1a4-48d3-86ff-0520d28f6ca6")
+                console.log("https://openstates.org/api/v1/bills/" + billId + "/?&apikey=8cef81cb-a1a4-48d3-86ff-0520d28f6ca6")
 
                 $.ajax({
                         url: "https://openstates.org/api/v1/bills/" + billId + "/?&apikey=8cef81cb-a1a4-48d3-86ff-0520d28f6ca6",
@@ -249,7 +257,6 @@ var getBills = (representative, isSenator, latitude, longitude) => {
 
                     })
             }
-            console.log(bills);
 
         })
     })
@@ -338,7 +345,6 @@ $(".card-title").click(function() {
     //build the query URL and append the leg ID to it
     var queryURL = "https://openstates.org/api/v1/legislators/" + legislatorID + "/?&apikey=8cef81cb-a1a4-48d3-86ff-0520d28f6ca6"
     // console.log(legislatorID);
-    console.log(queryURL);
 
     // Creating an AJAX call for the specific card being clicked
     $.ajax({
@@ -357,7 +363,6 @@ $(".card-title").click(function() {
         var infoColLeft = $("<div id='info-col-left' class='col s12 m5'>");
         var infoColRight = $("<div id='info-col-right' class='col s12 m5'>");
 
-        console.log(response);
 
         var infoBox = $("<div id='info-box'>");
         var infoCol = $("<div id='info-col'>");
@@ -411,7 +416,6 @@ $(".card-title").click(function() {
         // tableBodyRow.append("<td class='cell'>Lots of text over and over, Lots of text over and over, ")
         
 
-        var committees = $("<td class='cell'>");
 
         // tableHeader.append(tableHeaderRow)
         // table.append(tableHeader);
@@ -419,10 +423,10 @@ $(".card-title").click(function() {
         for (i = 0; i < committees.length; i++) {
             if (committees[i].type === "committee member") {
                 committeesResults.push(committees[i].committee);
+                committeesDiv.append($(`<div>${committees[i].committee}</div>`))
             }
         }
 
-        console.log(committeesResults)
         // tableBody.append(tableBodyRow)
         // table.append(tableBody);
 
@@ -464,6 +468,8 @@ $(".card-title").click(function() {
         if (response.chamber === "lower"){
         	isSenator = "false"
         }
+
+        console.log(isSenator);
 
         getBills(response.full_name, isSenator, latitude, longitude)
     });
