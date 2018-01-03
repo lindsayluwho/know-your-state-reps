@@ -354,6 +354,9 @@ $(".card-title").click(function() {
             $("#info-box").remove();
         }
 
+        var infoColLeft = $("<div id='info-col-left' class='col s12 m5'>");
+        var infoColRight = $("<div id='info-col-right' class='col s12 m5'>");
+
         console.log(response);
 
         var infoBox = $("<div id='info-box'>");
@@ -433,14 +436,19 @@ $(".card-title").click(function() {
         cardRow.append(name);
         cardRow.append(photoCol);
         photoCol.append(photo);
-        cardRow.append(nameClicked);
+        cardRow.append(infoColLeft);
+        cardRow.append(infoColRight);
         // nameClicked.append(table);
         // nameClicked.append(legName);
-        nameClicked.append(party);
-        nameClicked.append(address);
-        nameClicked.append(phone);
-        nameClicked.append(email);
-        nameClicked.append(committeesDiv);
+        infoColLeft.append($("<div class='mini-header'>Basic Info</div>"));
+        infoColLeft.append($("<hr class='small-hr'>"));
+        infoColLeft.append(party);
+        infoColLeft.append(committeesDiv);
+        infoColRight.append($("<div class='mini-header'>Contact Info</div>"));
+        infoColRight.append($("<hr class='small-hr'>"));
+        infoColRight.append(email);
+        infoColRight.append(address);
+        infoColRight.append(phone);
 
         infoBox.append(infoCol);
 
