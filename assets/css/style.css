@@ -207,3 +207,45 @@ a#more-details:hover {
 #quote-box{
 	margin-top: 40px;
 }
+
+.image{
+	border: 1px solid white;
+	margin-top: 30px;
+	height: 263px;
+	width: 179px;
+}
+
+#info-col-left{
+	padding-left: 30px;
+}
+
+.name{
+	text-align: center;
+	font-size: 45px;
+}
+
+#info-col-left, #info-col-right{
+	font-size: 17px;
+}
+
+.mini-header{
+	text-align: center;
+	font-size: 24px;
+}
+
+#info-col-left{
+	padding-left: 80px;
+	padding-top: 20px;
+}
+
+#info-col-right{
+	padding-top: 20px;
+}
+
+.info-card-text{
+	margin: 30px !important;
+}
+
+.small-hr{
+	width: 150px;
+}
