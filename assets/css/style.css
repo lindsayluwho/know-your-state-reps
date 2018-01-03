@@ -66,11 +66,19 @@ a.brand-logo {
 	border: hidden;
 }
 
-#submit, #billSearch {
+#submit{
 	z-index: 1;
 	position: relative;
 	left: 100%;
 	top: -65%;
+	text-shadow: 1px 2px 2px #000000;
+}
+
+#billSearch {
+	z-index: 1;
+	position: absolute;
+	left: 96%;
+	top: 75%;
 	text-shadow: 1px 2px 2px #000000;
 }
 
@@ -154,5 +162,11 @@ a#more-details:hover {
 
 #location-search:hover {
 	cursor: pointer;
+}
+
+#dropdown, #bill-search-bar
+{
+	margin-top: 0;
+	z-index: 2;
 }
 

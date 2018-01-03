@@ -1,6 +1,10 @@
 $(document).ready(function(){
+
+		//parallax template
     $('.parallax').parallax();
 
+    //Bill Search state selector
+    $('select').material_select();
 
       // Side Nav Initialize
 	$('.button-collapse').sideNav({
@@ -14,3 +18,5 @@ $(document).ready(function(){
 	    $('.button-collapse').sideNav('hide');
 	});	
 });
+
+
