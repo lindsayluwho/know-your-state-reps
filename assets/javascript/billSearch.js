@@ -14,7 +14,7 @@ $(document).ready(function() {
 
   if (state!==null && optionExists) {
     $(".select-dropdown").val(state).change();
-
+    $(":selected").val(state);
   }
 
   $("#bill-search-form").on("submit", function(event) {
