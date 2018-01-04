@@ -208,6 +208,7 @@ a#more-details:hover {
 	margin-top: 40px;
 }
 
+
 .image{
 	border: 1px solid white;
 	margin-top: 30px;
@@ -248,4 +249,66 @@ a#more-details:hover {
 
 .small-hr{
 	width: 150px;
+}
+
+
+.info-overlay-wrapper{
+	overflow: hidden;
+	position: relative;
+	height: 600px;
+}
+
+.info-overlay{
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	z-index: 2;
+	box-sizing:border-box;
+	top: -580px;
+	transition: 0.5s;
+	background: rgba(32, 32, 32, 0.9);
+	padding: 10px;
+	font-size: 1.1em;
+
+}
+
+#overlay-1{
+	font-size: 1.3em;
+	font-weight: 700;
+	vertical-align: top;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#overlay-2{
+	font-size: 1.2em;
+	font-weight: 300;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+i{
+	vertical-align:text-bottom;
+}
+
+#expand-caret{
+	position: absolute;
+	bottom: 0px;
+}
+
+#close-x{
+	position: absolute;
+	top:0px;
+	left:0px;
+}
+
+.info-overlay:hover{
+	top: 0px;
+	cursor: pointer;
+}
+
+#address-search{
+	position: absolute;
+	top: 30px;
+
 }

@@ -6,7 +6,15 @@ $(document).ready(function(){
     //Bill Search state selector
     $('select').material_select();
 
+    //overlay close button
+    $("#close-x").click(function(){
+    	$(".info-overlay").css("top", "-580px");
+    });
 
+    //overlay open caret
+    $("#expand-caret").click(function(){
+    	$(".info-overlay").css("top","0px");
+    });
 
 
 

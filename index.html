@@ -22,6 +22,7 @@
                     <a href="#" class="right-align"><i data-activates="slide-out" class="button-collapse large material-icons" style="float:right">menu &nbsp;</i></a></li>
                 </div>
             </nav>
+            
 </div>
 
 <!-- Side Nav Code -->
@@ -45,7 +46,19 @@
 
 <div class="parallax-container">
     <div class="container">
-        <div class="search-wrapper input-field"><i class="material-icons prefix" id="location-search">location_searching</i>
+        <div class="info-overlay-wrapper">
+            <div class="info-overlay white-text">
+            <i class="material-icons" id="close-x">close</i>
+            <center><p id="overlay-1">Do you know who your state representatives are?<br> What about their voting record?</p></center> <p id="overlay-2">Most Americans don't know who is representing them, much less at the state and local level where most governing occurs. </p>
+
+            <p>To get started, click the crosshairs <i class="material-icons">location_searching</i> to automatically detect your location or type in your address and search <i class="material-icons">search</i> for your reps. Your reps will display in the tiles below. Click on a tile to get detailed information about each rep, including their voting record. </p>
+
+            <p>If you'd like information on a particular bill, click on the menu button <i class="material-icons">menu</i> in the top right corner and head on over to the advanced bill search page.</p><br>
+            <center>
+            <i class="material-icons" id="expand-caret">expand_more</i></center>
+            </div>
+        </div>
+        <div class="search-wrapper input-field" id="address-search"><i class="material-icons prefix" id="location-search">location_searching</i>
         <input id="search" placeholder="Address">
         <button id="submit" class="btn-floating cyan white-text"><i class="material-icons">search</i></button>
     </div>
