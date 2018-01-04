@@ -177,6 +177,9 @@ $(document).ready(function() {
       comNameList.text("No vote recorded");
 
 
+      var lowerDiv = $("<div>")
+
+
       linkHeadDiv.append(linkHead);
       linkPDiv.append(linkP);
       yesHeadDiv.append(yesHead);
@@ -190,14 +193,15 @@ $(document).ready(function() {
 
       detailRow.append(linkHeadDiv);
       detailRow.append(linkPDiv);
-      detailRow.append(yesHeadDiv);
-      detailRow.append(yesCountDiv)
-      detailRow.append(yesNameHeadDiv);
-      detailRow.append(nameListDiv);
-      detailRow.append(comYesHeadDiv);
-      detailRow.append(comYesCountDiv)
-      detailRow.append(comYesNameHeadDiv);
-      detailRow.append(comNameListDiv);
+      lowerDiv.append(yesHeadDiv);
+      lowerDiv.append(yesCountDiv)
+      lowerDiv.append(yesNameHeadDiv);
+      lowerDiv.append(nameListDiv);
+      lowerDiv.append(comYesHeadDiv);
+      lowerDiv.append(comYesCountDiv)
+      lowerDiv.append(comYesNameHeadDiv);
+      lowerDiv.append(comNameListDiv);
+      detailRow.append(lowerDiv);
 
 
      detailBlue.append(detailRow);
@@ -269,6 +273,10 @@ $(document).ready(function() {
 
         }
 
+        if (yesCount.text() === "No vote recorded" && nameList.text() === "No vote recorded"
+          && comYesCount.text() === "No vote recorded" && comNameList.text() === "No vote recorded"){
+          lowerDiv.empty();
+        }
        
     
         
