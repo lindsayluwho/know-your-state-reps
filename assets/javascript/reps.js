@@ -154,9 +154,9 @@ var getBills = (representative, isSenator, latitude, longitude) => {
                 var billId = (data[i].id)
                 var bills = []
 
-                // console.log("https://openstates.org/api/v1/bills/" + billId + "/?&apikey=8cef81cb-a1a4-48d3-86ff-0520d28f6ca6")
-                // Console logs detailed bill url.
                 console.log("https://openstates.org/api/v1/bills/" + billId + "/?&apikey=8cef81cb-a1a4-48d3-86ff-0520d28f6ca6")
+                // Console logs detailed bill url.
+                // console.log("https://openstates.org/api/v1/bills/" + billId + "/?&apikey=8cef81cb-a1a4-48d3-86ff-0520d28f6ca6")
 
                 $.ajax({
                         url: "https://openstates.org/api/v1/bills/" + billId + "/?&apikey=8cef81cb-a1a4-48d3-86ff-0520d28f6ca6",
@@ -167,7 +167,7 @@ var getBills = (representative, isSenator, latitude, longitude) => {
                         var bill = {}
 
                         // Bill votes default to no or other. We change the vote to yes later. This is easier and faster than writing 3 loops to search through bill's voting records, but this can be changed if we'd like.
-                        bill.vote = "no or other"
+                        bill.vote = "none found";
                         voteIcon = "thumb_down"
                         bill.senateVote = "No vote reported";
                         bill.assemblyVote = "No vote reported";
@@ -176,7 +176,7 @@ var getBills = (representative, isSenator, latitude, longitude) => {
                         for (var i = 0; i < results.votes.length; i++) {
 
                             if (results.votes[i].motion === "3RDG FINAL PASSAGE" && results.votes[i].chamber === "upper" && isSenator === "true") {
-
+                                consle.log("Hi")
                                 // After finding the vote array for final vote, not a committee vote, we loop through and look for senator's name. If we find it, we change bill.vote = yes;
                                 // IMPORTANT: variable in this loop is 'j' not 'i.'
                                 // We're still looping through the array we found "3RDG FINAL PASSAGE" in, so we need ot include result.votes[i].
@@ -189,6 +189,21 @@ var getBills = (representative, isSenator, latitude, longitude) => {
                                         voteIcon = "thumb_up"
                                     }
                                 }
+                                for (var j = 0; j < results.votes[i].no_votes.length; j++) {
+                                    if (results.votes[i].no_votes[j].name === lastNameCommaFirstName) {
+                                        console.log("NO")
+                                        bill.vote = "no";
+                                        voteIcon = "thumb_up"
+                                    }                               
+                                }
+                                for (var j = 0; j < results.votes[i].other_votes.length; j++) {
+                                    if (results.votes[i].other_votes[j].name === lastNameCommaFirstName) {
+                                        console.log("OTHER");
+                                        bill.vote = "other";
+                                        voteIcon = "thumb_up"
+                                    }                               
+                                }
+                                
                             }
 
                             if (results.votes[i].motion === "3RDG FINAL PASSAGE" && results.votes[i].chamber === "lower" && isSenator === "false") {
@@ -201,9 +216,24 @@ var getBills = (representative, isSenator, latitude, longitude) => {
 
                                 for (var j = 0; j < results.votes[i].yes_votes.length; j++) {
                                     if (results.votes[i].yes_votes[j].name === lastNameCommaFirstName) {
+                                        // console.log("YES")
                                         bill.vote = "yes";
                                         voteIcon = "thumb_up"
-                                    }
+                                    }                               
+                                }
+                                for (var j = 0; j < results.votes[i].no_votes.length; j++) {
+                                    if (results.votes[i].no_votes[j].name === lastNameCommaFirstName) {
+                                        // console.log("NO")
+                                        bill.vote = "no";
+                                        voteIcon = "thumb_up"
+                                    }                               
+                                }
+                                for (var j = 0; j < results.votes[i].other_votes.length; j++) {
+                                    if (results.votes[i].other_votes[j].name === lastNameCommaFirstName) {
+                                        // console.log("OTHER");
+                                        bill.vote = "other";
+                                        voteIcon = "thumb_up"
+                                    }                               
                                 }
                             }
                         }
@@ -227,7 +257,7 @@ var getBills = (representative, isSenator, latitude, longitude) => {
 
                         }
                         bills.push(bill);
-
+                        console.log(bill.vote);
                         var billLi = $("<li>")
                         var billName = $("<div class='collapsible-header cyan darken-1'>")
                         
