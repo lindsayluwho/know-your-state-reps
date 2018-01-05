@@ -167,16 +167,17 @@ var getBills = (representative, isSenator, latitude, longitude) => {
                         var bill = {}
 
                         // Bill votes default to no or other. We change the vote to yes later. This is easier and faster than writing 3 loops to search through bill's voting records, but this can be changed if we'd like.
-                        bill.vote = "none found";
-                        voteIcon = "thumb_down"
+                        bill.vote = "No vote found at this time";
+                        voteIcon = "help"
                         bill.senateVote = "No vote reported";
                         bill.assemblyVote = "No vote reported";
+
 
                         // Loops through bill object looking for a motion with the string "3RDG FINAL PASSAGE," which indicates a final vote. We need this differentiate from committee votes. Chamber === upper because this is a search for a senator.
                         for (var i = 0; i < results.votes.length; i++) {
 
                             if (results.votes[i].motion === "3RDG FINAL PASSAGE" && results.votes[i].chamber === "upper" && isSenator === "true") {
-                                consle.log("Hi")
+
                                 // After finding the vote array for final vote, not a committee vote, we loop through and look for senator's name. If we find it, we change bill.vote = yes;
                                 // IMPORTANT: variable in this loop is 'j' not 'i.'
                                 // We're still looping through the array we found "3RDG FINAL PASSAGE" in, so we need ot include result.votes[i].
@@ -186,21 +187,24 @@ var getBills = (representative, isSenator, latitude, longitude) => {
                                 for (var j = 0; j < results.votes[i].yes_votes.length; j++) {
                                     if (results.votes[i].yes_votes[j].name === lastNameCommaFirstName) {
                                         bill.vote = "yes";
-                                        voteIcon = "thumb_up"
+                                        voteIcon = "thumb_up";
+
                                     }
                                 }
                                 for (var j = 0; j < results.votes[i].no_votes.length; j++) {
                                     if (results.votes[i].no_votes[j].name === lastNameCommaFirstName) {
                                         console.log("NO")
                                         bill.vote = "no";
-                                        voteIcon = "thumb_up"
+                                        voteIcon = "thumb_down";
+
                                     }                               
                                 }
                                 for (var j = 0; j < results.votes[i].other_votes.length; j++) {
                                     if (results.votes[i].other_votes[j].name === lastNameCommaFirstName) {
                                         console.log("OTHER");
                                         bill.vote = "other";
-                                        voteIcon = "thumb_up"
+                                        voteIcon = "thumbs_up_down";
+
                                     }                               
                                 }
                                 
@@ -218,21 +222,25 @@ var getBills = (representative, isSenator, latitude, longitude) => {
                                     if (results.votes[i].yes_votes[j].name === lastNameCommaFirstName) {
                                         // console.log("YES")
                                         bill.vote = "yes";
-                                        voteIcon = "thumb_up"
+                                        voteIcon = "thumb_up";
+
                                     }                               
                                 }
                                 for (var j = 0; j < results.votes[i].no_votes.length; j++) {
                                     if (results.votes[i].no_votes[j].name === lastNameCommaFirstName) {
                                         // console.log("NO")
                                         bill.vote = "no";
-                                        voteIcon = "thumb_up"
+                                        voteIcon = "thumb_down";
+
                                     }                               
                                 }
                                 for (var j = 0; j < results.votes[i].other_votes.length; j++) {
                                     if (results.votes[i].other_votes[j].name === lastNameCommaFirstName) {
                                         // console.log("OTHER");
                                         bill.vote = "other";
-                                        voteIcon = "thumb_up"
+                                        voteIcon = "thumbs_up_down";
+
+
                                     }                               
                                 }
                             }
@@ -266,6 +274,7 @@ var getBills = (representative, isSenator, latitude, longitude) => {
                         var billSenate = $("<div class='collapsible-body cyan'><span>")
                         var billAssembly = $("<span>")
                         var billDate = $("<span>")
+                        var billVoteDetail = $("<span>")
 
                         billVote.text(voteIcon);
                         billName.append(billVote);
@@ -273,12 +282,14 @@ var getBills = (representative, isSenator, latitude, longitude) => {
 
                         billSenate.append("<strong>How the bill did in the Senate</strong> <br>" + bill.senateVote + "<br><br>");
                         billAssembly.append("<strong>How the bill did in the Assembly</strong><br> " + bill.assemblyVote + "<br><br>");
-                        billDate.append("<strong>Date the bill was introduced</strong><br> " + bill.dateIntroduced);
+                        billDate.append("<strong>Date the bill was introduced</strong><br> " + bill.dateIntroduced + "<br><br>");
+                        billVoteDetail.append("<strong>How your rep voted</strong><br>" + bill.vote);
 
                         billLi.append(billName);
 
                         billSenate.append(billAssembly);
                         billSenate.append(billDate);
+                        billSenate.append(billVoteDetail);
                         
                         billLi.append(billSenate);
 
