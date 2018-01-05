@@ -1,31 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-
-    <meta name=viewport content="width=device-width, initial-scale=1">
-    <title>Know Your State Reps</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet">
-
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-</head>
-
-<body>
-
-<div class="row" style="margin-bottom: 0px">
-        <nav>
+    <head>
+        <meta charset="UTF-8">
+        <meta name=viewport content="width=device-width, initial-scale=1">
+        <title>Know Your State Reps</title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    </head>
+    <body>
+        <div class="row" style="margin-bottom: 0px">
+            <nav>
                 <div class="nav-wrapper cyan">
                     <a href="index.html" class="brand-logo center">Know Your State Reps</a>
                     <a href="#" class="right-align"><i data-activates="slide-out" class="button-collapse large material-icons" style="float:right">menu &nbsp;</i></a></li>
                 </div>
             </nav>
             
-</div>
-
-<!-- Side Nav Code -->
+        </div>
+        <!-- Side Nav Code -->
         <ul id="slide-out" class="side-nav white"">
             <div class="cyan darken-1">
                 <button class="navClose" style="color:white;background-color:darkred;" type="button">X</button>
@@ -44,89 +38,79 @@
             <div class="cyan darken-1" style="height:50%"></div>
         </div>
     </ul>
-
-<div class="parallax-container">
-    <div class="container">
-        <div class="info-overlay-wrapper">
-            <div class="info-overlay white-text">
-            <i class="material-icons" id="close-x">close</i>
-            <center><p id="overlay-1">Do you know who your state representatives are?<br> What about their voting record?</p></center> <p id="overlay-2">Most Americans don't know who is representing them, much less at the state and local level where most governing occurs. </p>
-
-            <p>To get started, click the crosshairs <i class="material-icons">location_searching</i> to automatically detect your location or type in your address and search <i class="material-icons">search</i> for your reps. Your reps will display in the tiles below. Click on a tile to get detailed information about each rep, including their voting record. </p>
-
-            <p>If you'd like information on a particular bill, click on the menu button <i class="material-icons">menu</i> in the top right corner and head on over to the advanced bill search page.</p><br>
-            <center>
-            <i class="material-icons" id="expand-caret">expand_more</i></center>
+    <div class="parallax-container">
+        <div class="container">
+            <div class="info-overlay-wrapper">
+                <div class="info-overlay white-text">
+                    <i class="material-icons" id="close-x">close</i>
+                    <center><p id="overlay-1">Do you know who your state representatives are?<br> What about their voting record?</p></center> <p id="overlay-2">Most Americans don't know who is representing them, much less at the state and local level where most governing occurs. </p>
+                    <p>To get started, click the crosshairs <i class="material-icons">location_searching</i> to automatically detect your location or type in your address and search <i class="material-icons">search</i> for your reps. Your reps will display in the tiles below. Click on a tile to get detailed information about each rep, including their voting record. </p>
+                    <p>If you'd like information on a particular bill, click on the menu button <i class="material-icons">menu</i> in the top right corner and head on over to the advanced bill search page.</p><br>
+                    <center>
+                    <i class="material-icons" id="expand-caret">expand_more</i></center>
+                </div>
+            </div>
+            <div class="search-wrapper input-field" id="address-search"><i class="material-icons prefix" id="location-search">location_searching</i>
+                <input id="search" placeholder="Address">
+                <button id="submit" class="btn-floating cyan white-text"><i class="material-icons">search</i></button>
             </div>
         </div>
-        <div class="search-wrapper input-field" id="address-search"><i class="material-icons prefix" id="location-search">location_searching</i>
-        <input id="search" placeholder="Address">
-        <button id="submit" class="btn-floating cyan white-text"><i class="material-icons">search</i></button>
-    </div>
-    </div>
         <div id="map" class="section no-pad-top"></div>
-
-</div>
-<div class="container">
-    <div class="section white cards-section">
-        <div class="row">
-            <div class="col s12">
-                <div class="card cyan darken-1" id="reps-card">
-                    <div class="card-content white-text">
-                        <span id="senator" class="card-title">SENATOR NAME</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s12 m6">
-                <div class="card cyan darken-1" id="reps-card">
-                    <div class="card-content white-text">
-                        <span id="assembly1" class="card-title">ASSEMBLYWOMAN NAME</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col s12 m6">
-                <div class="card cyan darken-1" id="reps-card">
-                    <div class="card-content white-text">
-                        <span id="assembly2" class="card-title">ASSEMBLYWOMAN NAME</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div></div>
-
-       
     </div>
-</div>
-<div class="parallax-container">
+    <div class="container">
+        <div class="section white cards-section">
+            <div class="row">
+                <div class="col s12">
+                    <div class="card cyan darken-1" id="reps-card">
+                        <div class="card-content white-text">
+                            <span id="senator" class="card-title">SENATOR NAME</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m6">
+                    <div class="card cyan darken-1" id="reps-card">
+                        <div class="card-content white-text">
+                            <span id="assembly1" class="card-title">ASSEMBLYWOMAN NAME</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m6">
+                    <div class="card cyan darken-1" id="reps-card">
+                        <div class="card-content white-text">
+                            <span id="assembly2" class="card-title">ASSEMBLYWOMAN NAME</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div></div>
+            
+        </div>
+    </div>
+    <div class="parallax-container">
         <div class="parallax">
             <img src="assets/american_flag_flag_waving_american_usa_american_flag_waving_united_states-834559.jpg" class="responsive-img" style="display: block;">
         </div>
-</div>
-
-<footer class="page-footer cyan lighten-1">
-  <div class="footer-copyright cyan">
-      <div class="container">
-          <span class="left">Know Your State Reps</span>
-          <span class="right"> © 2017</span>
-      </div>
-  </div>    
-</footer>
-        
-<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-<script src="assets/javascript/script.js"></script>
-<script src="assets/javascript/map.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANSUk1NNP2yDUSd94AklPQonusBBP16PI&callback=initMap">
-</script>
-<script type='text/javascript' src='assets/javascript/reps.js'></script>
-
-<script type='text/javascript' src='assets/javascript/search-by-typed-location.js'></script>
-<script type='text/javascript' src='assets/javascript/bill.js'></script>
-<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-
-
+    </div>
+    <footer class="page-footer cyan lighten-1">
+        <div class="footer-copyright cyan">
+            <div class="container">
+                <span class="left">Know Your State Reps</span>
+                <span class="right"> © 2017</span>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src="assets/javascript/script.js"></script>
+    <script src="assets/javascript/map.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANSUk1NNP2yDUSd94AklPQonusBBP16PI&callback=initMap">
+    </script>
+    <script type='text/javascript' src='assets/javascript/reps.js'></script>
+    <script type='text/javascript' src='assets/javascript/search-by-typed-location.js'></script>
+    <script type='text/javascript' src='assets/javascript/bill.js'></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 </body>
-
 </html>
