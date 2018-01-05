@@ -1,43 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name=viewport content="width=device-width, initial-scale=1">
-    <title>Know Your State Reps</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <!-- Javascript -->
-</head>
-
-<body>
-    <div class="row" style="margin-bottom: 0px">
-        <nav>
-            <div class="nav-wrapper cyan">
-                <a href="index.html" class="brand-logo center">Know Your State Reps</a>
-                <a href="#" class="right-align"><i data-activates="slide-out" class="button-collapse large material-icons" style="float:right">menu &nbsp;</i></a></li>
+    <head>
+        <meta charset="UTF-8">
+        <meta name=viewport content="width=device-width, initial-scale=1">
+        <title>Know Your State Reps</title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+        <!-- Javascript -->
+    </head>
+    <body>
+        <div class="row" style="margin-bottom: 0px">
+            <nav>
+                <div class="nav-wrapper cyan">
+                    <a href="index.html" class="brand-logo center">Know Your State Reps</a>
+                    <a href="#" class="right-align"><i data-activates="slide-out" class="button-collapse large material-icons" style="float:right">menu &nbsp;</i></a></li>
+                </div>
+            </nav>
+        </div>
+        <!-- Side Nav Code -->
+        <ul id="slide-out" class="side-nav white"">
+            <div class="cyan darken-1">
+                <button class="navClose" style="color:white;background-color:darkred;" type="button">X</button>
             </div>
-        </nav>
-    </div>
-    <!-- Side Nav Code -->
-    <ul id="slide-out" class="side-nav white" ">
-            <div class="cyan darken-1 ">
-                <button class="navClose " style="color:white;background-color:darkred; " type="button ">X</button>
-            </div>            
-            <li><div class="user-view cyan darken-1 ">
-                <img src="assets/images/flag.jpg " style="margin-left:-20px;margin-top:-10px ">
+            <li><div class="user-view cyan darken-1">
+                <img src="assets/images/flag.jpg" style="margin-left:-20px;margin-top:-10px">
             </li>
-            <li><div class="divider black "></div></li>
-            <li><a class="white-text cyan darken-1 " href="index.html "><i class="material-icons " style="color:white; ">home</i>Home</a></li>
-            <li><div class="divider black "></div></li>
-            <li><a class="white-text cyan darken-1 " href="bill-search.html "><i class="material-icons prefix " style="color:white; ">search</i>Search for a Bill</a></li>
-            <li><div class="divider black "></div></li>
-            <li><a class="white-text cyan darken-1 " href="contact.html "><i class="material-icons " style="color:white; ">account_circle
+            <li><div class="divider black"></div></li>
+            <li><a class="white-text cyan darken-1" href="index.html"><i class="material-icons" style="color:white;">home</i>Home</a></li>
+            <li><div class="divider black"></div></li>
+            <li><a class="white-text cyan darken-1" href="bill-search.html"><i class="material-icons prefix" style="color:white;">search</i>Search for a Bill</a></li>
+            <li><div class="divider black"></div></li>
+            <li><a class="white-text cyan darken-1" href="contact.html"><i class="material-icons" style="color:white;">account_circle
             </i>About Us</a></li>
-            <li><div class="divider black "></div></li>
-            <div class="cyan darken-1 " style="height:250px "></div>
+            <li><div class="divider black"></div></li>
+            <div class="cyan darken-1" style="height:50%"></div>
         </div>
     </ul>
     <div class="parallax-container " id="bill-search-header " style="height: 1000px; ">
@@ -48,39 +46,39 @@
                         <div class="search-wrapper row">
                             <div class="input-field col s6 m2" id="dropdown">
                                 <select id="select-state">
-                                  <option value="" disabled selected>State</option>
-                                  <option value="MA">MA</option>
-                                  <option value="NJ">NJ</option>
-                                  <option value="NY">NY</option>
-                                  <option value="PA">PA</option>
+                                    <option value="" disabled selected>State</option>
+                                    <option value="MA">MA</option>
+                                    <option value="NJ">NJ</option>
+                                    <option value="NY">NY</option>
+                                    <option value="PA">PA</option>
                                 </select>
                             </div>
                             <div class="input-field col s6 m10" id="bill-search-bar">
                                 <input id="bill-input" placeholder="Search for a bill"></div>
-                                    <button id="billSearch" class="btn-floating cyan white-text"><i class="material-icons">search</i></button>
-                            
+                                <button id="billSearch" class="btn-floating cyan white-text"><i class="material-icons">search</i></button>
+                                
+                            </div>
                         </div>
                     </div>
-                </div>
-            </form>
-        </div>
-        <div class="parallax">
-            <img src="assets/american_flag_flag_waving_american_usa_american_flag_waving_united_states-834559.jpg" class="responsive-img" style="display: block;">
-        </div>
-    </div>
-    <div class="results"></div>
-    <footer class="page-footer cyan lighten-1">
-        <div class="footer-copyright cyan">
-            <div class="container">
-                <span class="left">Know Your State Reps</span>
-                <span class="right"> © 2017</span>
+                </form>
+            </div>
+            <div class="parallax">
+                <img src="assets/american_flag_flag_waving_american_usa_american_flag_waving_united_states-834559.jpg" class="responsive-img" style="display: block;">
             </div>
         </div>
-    </footer>
-    <script src="https://code.jquery.com/jquery-3.2.1.js " integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin=" anonymous "></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js "></script>
-    <script src="assets/javascript/script.js "></script>
-    <script type='text/javascript' src='assets/javascript/search-by-typed-location.js'></script>
-    <script type='text/javascript' src='assets/javascript/billSearch.js'></script>
-</body>
+        <div class="results"></div>
+        <footer class="page-footer cyan lighten-1">
+            <div class="footer-copyright cyan">
+                <div class="container">
+                    <span class="left">Know Your State Reps</span>
+                    <span class="right"> © 2017</span>
+                </div>
+            </div>
+        </footer>
+        <script src="https://code.jquery.com/jquery-3.2.1.js " integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin=" anonymous "></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js "></script>
+        <script src="assets/javascript/script.js "></script>
+        <script type='text/javascript' src='assets/javascript/search-by-typed-location.js'></script>
+        <script type='text/javascript' src='assets/javascript/billSearch.js'></script>
+    </body>
 </html>
