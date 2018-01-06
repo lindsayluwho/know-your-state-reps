@@ -30,6 +30,8 @@ function getState(address) {
 }
 
 
+
+
 var getBills = (representative, isSenator, latitude, longitude) => {
 
     var latitude = localStorage.getItem("latitude");
@@ -39,16 +41,16 @@ var getBills = (representative, isSenator, latitude, longitude) => {
 
     // This function takes a name "Dave Brudner" and returns it in last name, comma, first name form ("Brudner, Dave")
     // Works with middle names too. Doesn't work with full names with more than 3 names
-    var lastNameCommaFirstName = (name) => {
+    var RepresentativeName = (name) => {
 
         var name = name.split(" ")
 
         if (name.length === 2) {
             var firstName = name[0]
             var lastName = name[1]
-            var lastNameCommaFirstName = lastName + ", " + firstName;
-            console.log(lastNameCommaFirstName)
-            return lastNameCommaFirstName
+            var RepresentativeName = lastName + " " + firstName;
+            console.log(RepresentativeName)
+            return RepresentativeName
         }
 
         if (name.length === 3) {
@@ -64,15 +66,28 @@ var getBills = (representative, isSenator, latitude, longitude) => {
             }
 
             console.log(middleName);
-           	var lastNameCommaFirstName = `${lastName}, ${firstName} ${middleName}`
-            console.log(lastNameCommaFirstName)
-            return lastNameCommaFirstName
+           	var RepresentativeName = `${lastName} ${firstName} ${middleName}`
+            console.log(RepresentativeName)
+            return RepresentativeName
         }
     }
 
+    // This function removes commas from a string
+    var removeCommas = (string) => {
+        return string.split('').filter((letter) => {
+            return letter != ','
+        }).join('')
+    }
+
+    var specialCaseName = (string) => {
+        string = string.split(" ")
+        return `${string[1]} ${string[2]} ${string[0]}`
+    }
+
     // Change name into last name, first name so we can search later for yes votes in a bill
-    var repName = representative
-    var lastNameCommaFirstName = lastNameCommaFirstName(repName);
+    var repName = representative;
+    var RepresentativeName = RepresentativeName(repName);
+    var specialCaseName = specialCaseName(repName);
 
     var state;
     // Url to retrieve 10 bills
@@ -185,14 +200,14 @@ var getBills = (representative, isSenator, latitude, longitude) => {
                                 // I've tested this on 2 senators and the checked the results myself and it appears to work.
 
                                 for (var j = 0; j < results.votes[i].yes_votes.length; j++) {
-                                    if (results.votes[i].yes_votes[j].name === lastNameCommaFirstName) {
+                                    if (removeCommas(results.votes[i].yes_votes[j].name) === RepresentativeName || specialCaseName) {
                                         bill.vote = "yes";
                                         voteIcon = "thumb_up";
 
                                     }
                                 }
                                 for (var j = 0; j < results.votes[i].no_votes.length; j++) {
-                                    if (results.votes[i].no_votes[j].name === lastNameCommaFirstName) {
+                                    if (removeCommas(results.votes[i].no_votes[j].name) === RepresentativeName || specialCaseName) {
                                         console.log("NO")
                                         bill.vote = "no";
                                         voteIcon = "thumb_down";
@@ -200,7 +215,7 @@ var getBills = (representative, isSenator, latitude, longitude) => {
                                     }                               
                                 }
                                 for (var j = 0; j < results.votes[i].other_votes.length; j++) {
-                                    if (results.votes[i].other_votes[j].name === lastNameCommaFirstName) {
+                                    if (removeCommas(results.votes[i].other_votes[j].name) === RepresentativeName || specialCaseName) {
                                         console.log("OTHER");
                                         bill.vote = "other";
                                         voteIcon = "thumbs_up_down";
@@ -219,7 +234,7 @@ var getBills = (representative, isSenator, latitude, longitude) => {
                                 // I've tested this on 2 senators and the checked the results myself and it appears to work.
 
                                 for (var j = 0; j < results.votes[i].yes_votes.length; j++) {
-                                    if (results.votes[i].yes_votes[j].name === lastNameCommaFirstName) {
+                                    if (removeCommas(results.votes[i].yes_votes[j].name) === RepresentativeName || specialCaseName) {
                                         // console.log("YES")
                                         bill.vote = "yes";
                                         voteIcon = "thumb_up";
@@ -227,7 +242,7 @@ var getBills = (representative, isSenator, latitude, longitude) => {
                                     }                               
                                 }
                                 for (var j = 0; j < results.votes[i].no_votes.length; j++) {
-                                    if (results.votes[i].no_votes[j].name === lastNameCommaFirstName) {
+                                    if (removeCommas(results.votes[i].no_votes[j].name) === RepresentativeName || specialCaseName) {
                                         // console.log("NO")
                                         bill.vote = "no";
                                         voteIcon = "thumb_down";
@@ -235,7 +250,7 @@ var getBills = (representative, isSenator, latitude, longitude) => {
                                     }                               
                                 }
                                 for (var j = 0; j < results.votes[i].other_votes.length; j++) {
-                                    if (results.votes[i].other_votes[j].name === lastNameCommaFirstName) {
+                                    if (removeCommas(results.votes[i].other_votes[j].name) === RepresentativeName || specialCaseName) {
                                         // console.log("OTHER");
                                         bill.vote = "other";
                                         voteIcon = "thumbs_up_down";
