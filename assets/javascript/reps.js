@@ -187,7 +187,8 @@ var getBills = (representative, isSenator, latitude, longitude) => {
                         bill.senateVote = "No vote reported";
                         bill.assemblyVote = "No vote reported";
 
-
+                        console.log(RepresentativeName);
+                        console.log(specialCaseName);
                         // Loops through bill object looking for a motion with the string "3RDG FINAL PASSAGE," which indicates a final vote. We need this differentiate from committee votes. Chamber === upper because this is a search for a senator.
                         for (var i = 0; i < results.votes.length; i++) {
 
@@ -200,14 +201,14 @@ var getBills = (representative, isSenator, latitude, longitude) => {
                                 // I've tested this on 2 senators and the checked the results myself and it appears to work.
 
                                 for (var j = 0; j < results.votes[i].yes_votes.length; j++) {
-                                    if (removeCommas(results.votes[i].yes_votes[j].name) === RepresentativeName || specialCaseName) {
+                                    if (removeCommas(results.votes[i].yes_votes[j].name) === RepresentativeName || removeCommas(results.votes[i].yes_votes[j].name) === specialCaseName) {
                                         bill.vote = "yes";
                                         voteIcon = "thumb_up";
 
                                     }
                                 }
                                 for (var j = 0; j < results.votes[i].no_votes.length; j++) {
-                                    if (removeCommas(results.votes[i].no_votes[j].name) === RepresentativeName || specialCaseName) {
+                                    if (removeCommas(results.votes[i].no_votes[j].name) === RepresentativeName || removeCommas(results.votes[i].yes_votes[j].name) === specialCaseName) {
                                         console.log("NO")
                                         bill.vote = "no";
                                         voteIcon = "thumb_down";
@@ -215,7 +216,7 @@ var getBills = (representative, isSenator, latitude, longitude) => {
                                     }                               
                                 }
                                 for (var j = 0; j < results.votes[i].other_votes.length; j++) {
-                                    if (removeCommas(results.votes[i].other_votes[j].name) === RepresentativeName || specialCaseName) {
+                                    if (removeCommas(results.votes[i].other_votes[j].name) === RepresentativeName || removeCommas(results.votes[i].yes_votes[j].name) === specialCaseName) {
                                         console.log("OTHER");
                                         bill.vote = "other";
                                         voteIcon = "thumbs_up_down";
@@ -234,7 +235,7 @@ var getBills = (representative, isSenator, latitude, longitude) => {
                                 // I've tested this on 2 senators and the checked the results myself and it appears to work.
 
                                 for (var j = 0; j < results.votes[i].yes_votes.length; j++) {
-                                    if (removeCommas(results.votes[i].yes_votes[j].name) === RepresentativeName || specialCaseName) {
+                                    if (removeCommas(results.votes[i].yes_votes[j].name) === RepresentativeName || removeCommas(results.votes[i].yes_votes[j].name) === specialCaseName) {
                                         // console.log("YES")
                                         bill.vote = "yes";
                                         voteIcon = "thumb_up";
@@ -242,7 +243,7 @@ var getBills = (representative, isSenator, latitude, longitude) => {
                                     }                               
                                 }
                                 for (var j = 0; j < results.votes[i].no_votes.length; j++) {
-                                    if (removeCommas(results.votes[i].no_votes[j].name) === RepresentativeName || specialCaseName) {
+                                    if (removeCommas(results.votes[i].no_votes[j].name) === RepresentativeName || removeCommas(results.votes[i].yes_votes[j].name) === specialCaseName) {
                                         // console.log("NO")
                                         bill.vote = "no";
                                         voteIcon = "thumb_down";
@@ -250,7 +251,7 @@ var getBills = (representative, isSenator, latitude, longitude) => {
                                     }                               
                                 }
                                 for (var j = 0; j < results.votes[i].other_votes.length; j++) {
-                                    if (removeCommas(results.votes[i].other_votes[j].name) === RepresentativeName || specialCaseName) {
+                                    if (removeCommas(results.votes[i].other_votes[j].name) === RepresentativeName || removeCommas(results.votes[i].yes_votes[j].name) === specialCaseName) {
                                         // console.log("OTHER");
                                         bill.vote = "other";
                                         voteIcon = "thumbs_up_down";
