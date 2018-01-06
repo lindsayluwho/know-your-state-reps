@@ -1,5 +1,6 @@
 $(document).ready(function() {
-    $("#submit").on("click", function() {
+    $("#submit").on("click", function(event) {
+        event.preventDefault();
         $("#info-box").detach();
         $("#bill-box").detach();
         

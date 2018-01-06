@@ -29,4 +29,4 @@ var lastNameCommaFirstName = (name) => {
         }
 }
 
-console.log(lastNameCommaFirstName('Kevin J. Rooney'))
+console.log(lastNameCommaFirstName('Eliana Pintor Marin'))
