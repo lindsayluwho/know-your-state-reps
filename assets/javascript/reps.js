@@ -49,7 +49,6 @@ var getBills = (representative, isSenator, latitude, longitude) => {
             var firstName = name[0]
             var lastName = name[1]
             var RepresentativeName = lastName + " " + firstName;
-            console.log(RepresentativeName)
             return RepresentativeName
         }
 
@@ -186,9 +185,7 @@ var getBills = (representative, isSenator, latitude, longitude) => {
                         voteIcon = "help"
                         bill.senateVote = "No vote reported";
                         bill.assemblyVote = "No vote reported";
-
-                        console.log(RepresentativeName);
-                        console.log(specialCaseName);
+                        
                         // Loops through bill object looking for a motion with the string "3RDG FINAL PASSAGE," which indicates a final vote. We need this differentiate from committee votes. Chamber === upper because this is a search for a senator.
                         for (var i = 0; i < results.votes.length; i++) {
 
@@ -209,7 +206,6 @@ var getBills = (representative, isSenator, latitude, longitude) => {
                                 }
                                 for (var j = 0; j < results.votes[i].no_votes.length; j++) {
                                     if (removeCommas(results.votes[i].no_votes[j].name) === RepresentativeName || removeCommas(results.votes[i].yes_votes[j].name) === specialCaseName) {
-                                        console.log("NO")
                                         bill.vote = "no";
                                         voteIcon = "thumb_down";
 
@@ -217,7 +213,6 @@ var getBills = (representative, isSenator, latitude, longitude) => {
                                 }
                                 for (var j = 0; j < results.votes[i].other_votes.length; j++) {
                                     if (removeCommas(results.votes[i].other_votes[j].name) === RepresentativeName || removeCommas(results.votes[i].yes_votes[j].name) === specialCaseName) {
-                                        console.log("OTHER");
                                         bill.vote = "other";
                                         voteIcon = "thumbs_up_down";
 
@@ -281,7 +276,6 @@ var getBills = (representative, isSenator, latitude, longitude) => {
 
                         }
                         bills.push(bill);
-                        console.log(bill.vote);
                         var billLi = $("<li>")
                         var billName = $("<div class='collapsible-header cyan darken-1'>")
                         
@@ -526,7 +520,6 @@ $(".card-title").click(function() {
         	isSenator = "false"
         }
 
-        console.log(isSenator);
 
         getBills(response.full_name, isSenator, latitude, longitude)
     });
